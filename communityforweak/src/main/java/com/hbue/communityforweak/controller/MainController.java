@@ -1,7 +1,5 @@
 package com.hbue.communityforweak.controller;
 
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,17 +38,6 @@ public class MainController {
     public @ResponseBody Iterable<User> getAllUsers() {
     	Iterable<User> iterables = userInfoService.getAllUsers();
         return iterables;
-    }
-    
-    @RequestMapping("/test")
-    public String test(){ 
-        return "login";
-    }
-    
-    @RequestMapping("/demo")
-    public String demo(Map<String, Object> map, @RequestParam String ttt) {
-        map.put("tid", "1" + ttt);
-        return "demo";
     }
     
     @RequestMapping("/byName")

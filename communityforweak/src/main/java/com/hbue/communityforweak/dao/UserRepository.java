@@ -8,5 +8,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	
 	Iterable<User> findByUsername(String username);
 	
-	User findByUserid(Integer userid);
+	User findByUserid(String userid);
 }

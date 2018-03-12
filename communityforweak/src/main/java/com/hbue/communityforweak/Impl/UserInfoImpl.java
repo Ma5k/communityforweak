@@ -21,7 +21,7 @@ public class UserInfoImpl implements UserInfoService {
 		return userRepository.findByUsername(username);
 	}
 	
-	public User findByUserid(Integer userid) {
+	public User findByUserid(String userid) {
 		return userRepository.findByUserid(userid);
 	}
 }

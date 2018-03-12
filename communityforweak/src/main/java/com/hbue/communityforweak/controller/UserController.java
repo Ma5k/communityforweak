@@ -33,7 +33,7 @@ public class UserController {
 	}
 
 	@GetMapping(path = "/byUserid")
-	public @ResponseBody User getUserByUserid(@RequestParam Integer userid) {
+	public @ResponseBody User getUserByUserid(@RequestParam String userid) {
 		System.out.println("byId" + userid);
 		User user = userInfoService.findByUserid(userid);
 		return user;
@@ -46,7 +46,7 @@ public class UserController {
 	}
 
 	@PostMapping("/loginVerify")
-	public String loginVerify(@RequestParam Integer userid, @RequestParam String password, HttpSession session,
+	public String loginVerify(@RequestParam String userid, @RequestParam String password, HttpSession session,
 			Map<String, Object> map) {
 		User user = userInfoService.findByUserid(userid);
 
@@ -80,16 +80,16 @@ public class UserController {
 		if (userid.equals("") || username.equals("") || password.equals("") || passwordRe.equals("") || address.equals("") || tel.equals("")) {
 			map.put("msg", "请填写完整信息！");
 			return "/register";
-		} else if (userInfoService.findByUserid(Integer.parseInt(userid)) != null) {
+		} else if (userInfoService.findByUserid(userid) != null) {
 			map.put("msg", "用户id已被注册！");
 			return "/register";
 		} else if (password.equals(passwordRe)) {
 			User nuser = new User();
-			nuser.setUserid(Integer.parseInt(userid));
+			nuser.setUserid(userid);
 			nuser.setUsername(username);
 			nuser.setPassword(password);
 			nuser.setScore(0);
-			nuser.setTel(Integer.parseInt(tel));
+			nuser.setTel(tel);
 			nuser.setAddress(address);
 			userRepository.save(nuser);
 			map.put("msg", "注册成功请登录！");
