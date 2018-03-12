@@ -14,7 +14,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer userid;
+	private String userid;
 	
 	private String username;
 	
@@ -26,13 +26,13 @@ public class User implements Serializable {
 	
 	private String address;
 	
-	private int tel;
+	private String tel;
 
-	public Integer getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
@@ -76,11 +76,11 @@ public class User implements Serializable {
 		this.address = address;
 	}
 
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 

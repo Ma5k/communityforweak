@@ -18,9 +18,9 @@ public class Serving implements Serializable {
 	private Integer id;
 	
 	//服务发起者id
-	private Integer userid;
+	private String userid;
 	
-	private Integer tel;
+	private String tel;
 	
 	private String servicename;
 	
@@ -43,20 +43,20 @@ public class Serving implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Integer getUserid() {
+	
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(Integer userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
-	public Integer getTel() {
+	public String getTel() {
 		return tel;
 	}
 
-	public void setTel(Integer tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 
