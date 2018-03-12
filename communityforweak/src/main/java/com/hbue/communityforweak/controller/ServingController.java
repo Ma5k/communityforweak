@@ -7,15 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hbue.communityforweak.dao.ServingRepository;
 import com.hbue.communityforweak.entry.Serving;
 import com.hbue.communityforweak.service.ServingInfoService;
 
 @Controller
 @RequestMapping(path="/serving")
 public class ServingController {
-	@Autowired
-	private ServingRepository servingRepository;
 	
 	@Autowired
 	private ServingInfoService servingInfoService;

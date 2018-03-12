@@ -7,15 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hbue.communityforweak.dao.ActivityRepository;
 import com.hbue.communityforweak.entry.Activity;
 import com.hbue.communityforweak.service.ActivityInfoService;
 
 @Controller
 @RequestMapping(path="/activity")
 public class ActivityController {
-	@Autowired
-	private ActivityRepository activityRepository;
+	
 	@Autowired
 	private ActivityInfoService activityInfoService;
 	
