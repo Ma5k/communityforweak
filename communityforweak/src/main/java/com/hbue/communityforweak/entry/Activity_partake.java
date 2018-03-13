@@ -24,8 +24,6 @@ public class Activity_partake implements Serializable {
 	
 	private String comment;
 	
-	private int num;
-	
 	private String tel;
 
 	public String getUserid() {
@@ -67,14 +65,6 @@ public class Activity_partake implements Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
 	}
 
 	public String getTel() {

@@ -29,6 +29,8 @@ public class User implements Serializable {
 	private String address;
 	
 	private String tel;
+	
+	private String idcard;
 
 	public String getUserid() {
 		return userid;
@@ -89,6 +91,21 @@ public class User implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getIdcard() {
+		return idcard;
+	}
+
+	public void setIdcard(String idcard) {
+		this.idcard = idcard;
+	}
 	
 }
