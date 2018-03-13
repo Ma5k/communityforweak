@@ -18,7 +18,7 @@ public class Activity_partake implements Serializable {
 	
 	private int userid;
 	
-	private int activityname;
+	private int activityid;
 	
 	private byte flage;
 	
@@ -36,12 +36,20 @@ public class Activity_partake implements Serializable {
 		this.userid = userid;
 	}
 
-	public int getActivityname() {
-		return activityname;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setActivityname(int activityname) {
-		this.activityname = activityname;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public int getActivityid() {
+		return activityid;
+	}
+
+	public void setActivityid(int activityid) {
+		this.activityid = activityid;
 	}
 
 	public byte getFlage() {

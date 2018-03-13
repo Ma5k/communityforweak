@@ -18,7 +18,7 @@ public class Service_partake implements Serializable {
 	
 	private String userid;
 	
-	private int servicename;
+	private int serviceid;
 	
 	private byte flag;
 	
@@ -32,12 +32,20 @@ public class Service_partake implements Serializable {
 		this.userid = userid;
 	}
 
-	public int getServicename() {
-		return servicename;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setServicename(int servicename) {
-		this.servicename = servicename;
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public int getServiceid() {
+		return serviceid;
+	}
+
+	public void setServiceid(int serviceid) {
+		this.serviceid = serviceid;
 	}
 
 	public byte getFlag() {
