@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hbue.communityforweak.dao.UserRepository;
 import com.hbue.communityforweak.entry.User;
 import com.hbue.communityforweak.service.UserInfoService;
 
 @Controller
 @RequestMapping(path = "/user")
 public class UserController {
+	
 	@Autowired
 	private UserInfoService userInfoService;
 
@@ -53,7 +53,7 @@ public class UserController {
 		} else if (user.getPassword().equals(password)) {
 			map.put("msg", "登录成功!");
 			session.setAttribute("user", user);
-			return "/homepage";
+			return "/demo";
 		} else {
 			map.put("msg", "密码错误!");
 			return "/login";
