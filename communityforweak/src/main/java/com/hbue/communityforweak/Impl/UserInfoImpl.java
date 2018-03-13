@@ -28,4 +28,6 @@ public class UserInfoImpl implements UserInfoService {
 	public User findByUserid(String userid) {
 		return userRepository.findByUserid(userid);
 	}
+
+
 }
