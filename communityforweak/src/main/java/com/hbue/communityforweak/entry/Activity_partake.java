@@ -16,7 +16,7 @@ public class Activity_partake implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	private int userid;
+	private String userid;
 	
 	private int activityid;
 	
@@ -28,11 +28,11 @@ public class Activity_partake implements Serializable {
 	
 	private String tel;
 
-	public int getUserid() {
+	public String getUserid() {
 		return userid;
 	}
 
-	public void setUserid(int userid) {
+	public void setUserid(String userid) {
 		this.userid = userid;
 	}
 
