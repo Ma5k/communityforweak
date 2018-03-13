@@ -10,13 +10,21 @@ import com.hbue.communityforweak.service.Activity_partakeService;
 @Service
 public class Activity_partakeServiceImpl implements Activity_partakeService {
 	@Autowired
-	private Activity_partakeRepository a_pRepository;
+	private Activity_partakeRepository activity_partakeRepository;
 	
 	public Iterable<Activity_partake> getAll(){
-		return a_pRepository.findAll();
+		return activity_partakeRepository.findAll();
 	}
 	
 	public Iterable<Activity_partake> findByUserid(String userid){
-		return a_pRepository.findByUserid(userid);
+		return activity_partakeRepository.findByUserid(userid);
+	}
+	
+	public Iterable<Activity_partake> findByActivityid(int activityid){
+		return activity_partakeRepository.findByActivityid(activityid);
+	}
+
+	public Iterable<Activity_partake> findByFlage(Byte flage) {
+		return activity_partakeRepository.findByFlage(flage);
 	}
 }

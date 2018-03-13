@@ -22,4 +22,20 @@ public class ServingInfoImpl implements ServingInfoService{
 	public Iterable<Serving> findByClassify(String classify){
 		return serviceRepository.findByClassify(classify);
 	}
+
+	public Iterable<Serving> findByServicename(String servicename) {
+		return serviceRepository.findByServicename(servicename);
+	}
+
+	public Serving findById(int id) {
+		return serviceRepository.findById(id);
+	}
+
+	public Iterable<Serving> findByUserid(String userid) {
+		return serviceRepository.findByUserid(userid);
+	}
+
+	public Iterable<Serving> findByActive(int active) {
+		return serviceRepository.findByActive(active);
+	}
 }

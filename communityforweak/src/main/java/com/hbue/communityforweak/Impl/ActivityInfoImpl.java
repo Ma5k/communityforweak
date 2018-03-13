@@ -19,4 +19,16 @@ public class ActivityInfoImpl implements ActivityInfoService {
 	public Iterable<Activity> findByClassify(String classify){
 		return activityRepository.findByClassify(classify);
 	}
+
+	public Activity findById(int id) {
+		return activityRepository.findById(id);
+	}
+
+	public Iterable<Activity> findByActivityname(String activityname) {
+		return activityRepository.findByActivityname(activityname);
+	}
+
+	public Iterable<Activity> findByActive(Byte active) {
+		return activityRepository.findByActive(active);
+	}
 }

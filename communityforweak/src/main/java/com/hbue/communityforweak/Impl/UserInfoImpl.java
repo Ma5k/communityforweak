@@ -29,5 +29,17 @@ public class UserInfoImpl implements UserInfoService {
 		return userRepository.findByUserid(userid);
 	}
 
+	public Iterable<User> findByAddress(String address){
+		return userRepository.findByAddress(address);
+	}
+	
+	public void deleteByUserid(String userid) {
+		User user = userRepository.findByUserid(userid);
+		userRepository.delete(user);
+	}
+
+	public Iterable<User> findByPermission(Byte permission) {
+		return userRepository.findByPermission(permission);
+	}
 
 }

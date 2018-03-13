@@ -19,4 +19,16 @@ public class Service_partakeServiceImpl implements Service_partakeService{
 	public Iterable<Service_partake> findByUserid(String userid){
 		return s_pRepository.findByUserid(userid);
 	}
+
+	public Service_partake findById(int id) {
+		return s_pRepository.findById(id);
+	}
+
+	public Iterable<Service_partake> findByServiceid(int serviceid) {
+		return s_pRepository.findByServiceid(serviceid);
+	}
+
+	public Iterable<Service_partake> findByFlag(Byte flag) {
+		return s_pRepository.findByFlag(flag);
+	}
 }
