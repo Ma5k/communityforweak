@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hbue.communityforweak.dao.ServingRepository;
 import com.hbue.communityforweak.entry.Serving;
+import com.hbue.communityforweak.entry.User;
+
 import org.springframework.stereotype.Service;
 
 import com.hbue.communityforweak.service.ServingInfoService;

@@ -21,8 +21,6 @@ import com.hbue.communityforweak.service.UserInfoService;
 @RequestMapping(path = "/user")
 public class UserController {
 	@Autowired
-	private UserRepository userRepository;
-	@Autowired
 	private UserInfoService userInfoService;
 
 	@GetMapping(path = "/byUsername")
@@ -49,7 +47,6 @@ public class UserController {
 	public String loginVerify(@RequestParam String userid, @RequestParam String password, HttpSession session,
 			Map<String, Object> map) {
 		User user = userInfoService.findByUserid(userid);
-
 		if (user == null) {
 			map.put("msg", "用户名不存在!");
 			return "/login";
@@ -91,7 +88,7 @@ public class UserController {
 			nuser.setScore(0);
 			nuser.setTel(tel);
 			nuser.setAddress(address);
-			userRepository.save(nuser);
+			userInfoService.save(nuser);
 			map.put("msg", "注册成功请登录！");
 			return "/login";
 		} else {

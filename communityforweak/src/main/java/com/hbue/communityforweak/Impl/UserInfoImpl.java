@@ -12,6 +12,10 @@ public class UserInfoImpl implements UserInfoService {
 	@Autowired
     private UserRepository userRepository;
 	
+	public void save(User user) {
+		userRepository.save(user);
+	}
+	
 	public Iterable<User> getAllUsers(){
 		return userRepository.findAll();
 	}
