@@ -53,6 +53,7 @@ public class Activity_partake implements Serializable {
 	public String getComment() {
 		return comment;
 	}
+	
 
 	public void setComment(String comment) {
 		this.comment = comment;
