@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hbue.communityforweak.entry.User;
+import com.hbue.communityforweak.service.ActivityInfoService;
+import com.hbue.communityforweak.service.ServingInfoService;
 import com.hbue.communityforweak.service.UserInfoService;
 
 @Controller
@@ -23,19 +24,11 @@ public class UserController {
 	@Autowired
 	private UserInfoService userInfoService;
 
-	@GetMapping(path = "/byUsername")
-	public @ResponseBody Iterable<User> getUserByUsername(@RequestParam String username) {
-		System.out.println("byName" + username);
-		Iterable<User> user = userInfoService.findByUsername(username);
-		return user;
-	}
-
-	@GetMapping(path = "/byUserid")
-	public @ResponseBody User getUserByUserid(@RequestParam String userid) {
-		System.out.println("byId" + userid);
-		User user = userInfoService.findByUserid(userid);
-		return user;
-	}
+	@Autowired
+	private ActivityInfoService activityInfoService;
+	
+	@Autowired
+	private ServingInfoService servingInfoService;
 
 	@GetMapping(path = "/login")
 	public String login(Map<String, Object> map) {
@@ -101,7 +94,7 @@ public class UserController {
 	public String logout(HttpSession session, Map<String, Object> map) {
 		session.removeAttribute("user");
 		map.put("msg", "您已注销，请重新登录！");
-		return "/login";
+		return "/index";
 	}
 
 }
