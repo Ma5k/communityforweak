@@ -4,6 +4,7 @@ import com.hbue.communityforweak.entry.Service_partake;
 import com.hbue.communityforweak.entry.Serving;
 
 public interface Service_partakeService {
+	public void Save(Service_partake ser_par);
 	public Iterable<Service_partake> findByUserid(String userid);
 	public Iterable<Service_partake> getAll();
 	public Service_partake findById(int id);

@@ -27,4 +27,12 @@ public class Activity_partakeServiceImpl implements Activity_partakeService {
 	public Iterable<Activity_partake> findByFlage(Byte flage) {
 		return activity_partakeRepository.findByFlage(flage);
 	}
+
+	public void Save(Activity_partake act_par) {
+		activity_partakeRepository.save(act_par);
+	}
+
+	public Activity_partake findById(int id) {
+		return activity_partakeRepository.findById(id);
+	}
 }

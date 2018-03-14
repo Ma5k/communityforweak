@@ -31,4 +31,8 @@ public class Service_partakeServiceImpl implements Service_partakeService{
 	public Iterable<Service_partake> findByFlag(Byte flag) {
 		return s_pRepository.findByFlag(flag);
 	}
+
+	public void Save(Service_partake ser_par) {
+		s_pRepository.save(ser_par);
+	}
 }

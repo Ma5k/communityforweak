@@ -1,6 +1,8 @@
 package com.hbue.communityforweak.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import com.hbue.communityforweak.dao.ServingRepository;
 import com.hbue.communityforweak.entry.Serving;
@@ -37,5 +39,12 @@ public class ServingInfoImpl implements ServingInfoService{
 
 	public Iterable<Serving> findByActive(int active) {
 		return serviceRepository.findByActive(active);
+	}
+
+	public Iterable<Serving> findBypage(int page, int size) {
+		PageRequest pageable = new PageRequest(page, size);
+		Page<Serving> pageSer = serviceRepository.findAll(pageable);
+		Iterable<Serving> servings = pageSer.getContent();
+		return servings;
 	}
 }

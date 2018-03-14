@@ -9,4 +9,6 @@ public interface ServingInfoService {
 	public Iterable<Serving> findByServicename(String servicename);
 	public Iterable<Serving> findByUserid(String userid);
 	public Iterable<Serving> findByActive(int active);
+	
+	public Iterable<Serving> findBypage(int page, int size);
 }
