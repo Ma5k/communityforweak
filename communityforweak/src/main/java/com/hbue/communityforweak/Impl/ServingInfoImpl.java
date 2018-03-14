@@ -3,11 +3,12 @@ package com.hbue.communityforweak.Impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 
 import com.hbue.communityforweak.dao.ServingRepository;
 import com.hbue.communityforweak.entry.Serving;
-import com.hbue.communityforweak.entry.User;
-
 import org.springframework.stereotype.Service;
 
 import com.hbue.communityforweak.service.ServingInfoService;
@@ -42,7 +43,11 @@ public class ServingInfoImpl implements ServingInfoService{
 	}
 
 	public Iterable<Serving> findBypage(int page, int size) {
-		PageRequest pageable = new PageRequest(page, size);
+		Order order1 = new Order(Direction.DESC, "startime");  
+		Order order2 = new Order(Direction.ASC, "scoreadd");  
+		Sort sort = new Sort(order1, order2);
+		
+		PageRequest pageable = new PageRequest(page, size, sort);
 		Page<Serving> pageSer = serviceRepository.findAll(pageable);
 		Iterable<Serving> servings = pageSer.getContent();
 		return servings;
