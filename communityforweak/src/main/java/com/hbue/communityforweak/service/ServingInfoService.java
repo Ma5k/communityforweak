@@ -1,5 +1,7 @@
 package com.hbue.communityforweak.service;
 
+import org.springframework.data.domain.Page;
+
 import com.hbue.communityforweak.entry.Serving;
 
 public interface ServingInfoService {
@@ -10,7 +12,7 @@ public interface ServingInfoService {
 	public Iterable<Serving> findByUserid(String userid);
 	public Iterable<Serving> findByActive(int active);
 	
-	public Iterable<Serving> findBypage(int page, int size);
+	public Page<Serving> findBypage(int page, int size);
 	
 	public Iterable<Serving> findByParticipantid(String parid);
 }
