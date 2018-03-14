@@ -44,12 +44,16 @@ public class ServingInfoImpl implements ServingInfoService{
 
 	public Iterable<Serving> findBypage(int page, int size) {
 		Order order1 = new Order(Direction.DESC, "startime");  
-		Order order2 = new Order(Direction.ASC, "scoreadd");  
+		Order order2 = new Order(Direction.DESC, "scoreadd");  
 		Sort sort = new Sort(order1, order2);
 		
 		PageRequest pageable = new PageRequest(page, size, sort);
 		Page<Serving> pageSer = serviceRepository.findAll(pageable);
 		Iterable<Serving> servings = pageSer.getContent();
 		return servings;
+	}
+
+	public Iterable<Serving> findByParticipantid(String parid) {
+		return serviceRepository.findByParticipantid(parid);
 	}
 }

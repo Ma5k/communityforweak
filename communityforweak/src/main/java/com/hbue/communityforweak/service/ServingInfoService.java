@@ -11,4 +11,6 @@ public interface ServingInfoService {
 	public Iterable<Serving> findByActive(int active);
 	
 	public Iterable<Serving> findBypage(int page, int size);
+	
+	public Iterable<Serving> findByParticipantid(String parid);
 }

@@ -46,4 +46,8 @@ public class UserInfoImpl implements UserInfoService {
 		return userRepository.findByIdcard(idcard);
 	}
 
+	public Iterable<User> findByServiceid(int serid) {
+		return userRepository.findByServiceid(serid);
+	}
+
 }

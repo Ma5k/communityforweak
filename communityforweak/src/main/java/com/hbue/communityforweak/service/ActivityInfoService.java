@@ -8,4 +8,6 @@ public interface ActivityInfoService {
 	public Activity findById(int id);
 	public Iterable<Activity> findByActivityname(String activityname);
 	public Iterable<Activity> findByActive(Byte active);
+	
+	public Iterable<Activity> findByUseid(String userid);
 }

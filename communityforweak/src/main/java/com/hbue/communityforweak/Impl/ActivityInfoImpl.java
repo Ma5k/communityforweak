@@ -31,4 +31,8 @@ public class ActivityInfoImpl implements ActivityInfoService {
 	public Iterable<Activity> findByActive(Byte active) {
 		return activityRepository.findByActive(active);
 	}
+
+	public Iterable<Activity> findByUseid(String userid) {
+		return activityRepository.findByUseid(userid);
+	}
 }
