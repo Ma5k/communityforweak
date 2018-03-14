@@ -41,5 +41,9 @@ public class UserInfoImpl implements UserInfoService {
 	public Iterable<User> findByPermission(Byte permission) {
 		return userRepository.findByPermission(permission);
 	}
+	
+	public User findByIdcard(String idcard) {
+		return userRepository.findByIdcard(idcard);
+	}
 
 }

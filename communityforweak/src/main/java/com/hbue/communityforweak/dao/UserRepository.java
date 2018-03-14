@@ -12,4 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	Iterable<User> findByAddress(String address);
 	
 	Iterable<User> findByPermission(Byte permission);
+	
+	User findByIdcard(String idcard);
 }

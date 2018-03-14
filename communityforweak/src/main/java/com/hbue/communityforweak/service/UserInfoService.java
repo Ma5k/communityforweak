@@ -11,4 +11,5 @@ public interface UserInfoService {
 	public Iterable<User> findByAddress(String address);
 	public void deleteByUserid(String userid);
 	public Iterable<User> findByPermission(Byte permission);
+	public User findByIdcard(String idcard);
 }
