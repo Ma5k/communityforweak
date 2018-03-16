@@ -1,33 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<title>Title</title>
-<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-
+	<meta charset="utf-8" />
+	<title></title>
+	<link rel="stylesheet" href="/css/regist.css">
+	<link rel="stylesheet" href="/css/common.css">
 </head>
-<body>
-	<form action="../user/registerVerify" method="post">
-		<p>
-			用户id: <input type="text" name="userid" id="userid" />
-		</p>
-		<p>
-			密码: <input type="password" name="password" id="password" />
-		</p>
-		<p>
-			确认密码: <input type="password" name="passwordRe" id="passwordRe" />
-		</p>
-		<p>
-			姓名: <input type="text" name="username" id="username" />
-		</p>
-		<p>
-			地址:<input type="text" name="address" id="address"/>
-		</p>
-		<p>
-			电话:<input type="text" name="tel" id="tel"/>
-		</p>
-		<p>${msg}</p>
-		<input type="submit" value="注册"/>
-	</form>
-</body>
+<!-- 主体部分 -->
+<body> 
+<div class="mid">
+	<div id="login" class="mid">  
+        <span class="login">注  册</span>
+        <form method="post" action="/user/registerVerify">  
+            <input class="input" type="text" required="required" placeholder="请输入用户ID" name="userid"/>  
+            <input class="input" type="password" required="required" placeholder="请输入密码" name="password"/> 
+            <input class="input" type="password" required="required" placeholder="请核对密码" name="passwordRe"/> 
+            <input class="input" type="text" required="required" placeholder="请输入姓名" name="username"/> 
+            <input class="input" type="text" required="required" placeholder="请输入家庭地址" name="address"/>
+            <input class="input" type="text" required="required" placeholder="请输入联系方式" name="tel"/>
+            <button class="btn" type="submit">注册</button>  
+        </form>
+        <a href="/user/login">已有账号？去登陆</a>
+    </div>
+</div> 
+      
+</body>  
 </html>
