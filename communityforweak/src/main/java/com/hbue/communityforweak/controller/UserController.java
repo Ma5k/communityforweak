@@ -29,6 +29,7 @@ public class UserController {
 		return "login";
 	}
 
+	//验证登录
 	@PostMapping("/loginVerify")
 	public String loginVerify(@RequestParam String userid, @RequestParam String password, HttpSession session,
 			Map<String, Object> map) {
@@ -52,6 +53,7 @@ public class UserController {
 		return "register";
 	}
 
+	//验证注册
 	@PostMapping("/registerVerify")
 	public String registerVerify(HttpServletRequest request, Map<String, Object> map) {
 		String userid = request.getParameter("userid");
