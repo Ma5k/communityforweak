@@ -50,4 +50,9 @@ public class ActivityInfoImpl implements ActivityInfoService {
 		Page<Activity> pageAct = activityRepository.findAll(pageable);
 		return pageAct;
 	}
+
+	//发起活动
+	public void startActivity(Activity activity) {
+		activityRepository.save(activity);
+	}
 }

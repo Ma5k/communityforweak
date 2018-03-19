@@ -15,4 +15,7 @@ public interface ActivityInfoService {
 	public Iterable<Activity> findByUseid(String userid);
 	
 	public Page<Activity> findBypage(int page, int size);
+	
+	//发起活动
+	public void startActivity(Activity activity);
 }

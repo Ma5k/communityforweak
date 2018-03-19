@@ -10,4 +10,5 @@ public interface Activity_partakeRepository extends JpaRepository<Activity_parta
 	Iterable<Activity_partake> findByActivityid(int activityid);
 	Iterable<Activity_partake> findByFlage(Byte flage);
 	Activity_partake findById(int id);
+	Activity_partake findByUseridAndActivityid(String userid, int activityid);
 }

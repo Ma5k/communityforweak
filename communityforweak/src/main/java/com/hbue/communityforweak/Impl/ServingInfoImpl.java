@@ -7,16 +7,28 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.domain.Sort.Order;
 
+import com.hbue.communityforweak.dao.Service_partakeRepository;
 import com.hbue.communityforweak.dao.ServingRepository;
+import com.hbue.communityforweak.dao.UserRepository;
+import com.hbue.communityforweak.entry.Service_partake;
 import com.hbue.communityforweak.entry.Serving;
+import com.hbue.communityforweak.entry.User;
+
 import org.springframework.stereotype.Service;
 
+import com.hbue.communityforweak.service.Service_partakeService;
 import com.hbue.communityforweak.service.ServingInfoService;
 
 @Service
 public class ServingInfoImpl implements ServingInfoService{
 	@Autowired
 	private ServingRepository serviceRepository;
+	
+	@Autowired 
+	private UserRepository userRepository;
+	
+	@Autowired
+	private Service_partakeRepository ser_par;
 	
 	public Iterable<Serving> getAllServings(){
 		return serviceRepository.findAll();
@@ -54,5 +66,26 @@ public class ServingInfoImpl implements ServingInfoService{
 
 	public Iterable<Serving> findByParticipantid(String parid) {
 		return serviceRepository.findByParticipantid(parid);
+	}
+
+	//服务结束后结算
+	public void settlement(int score, Serving serving) {
+		serving.setActive(2);
+		Iterable<User> users = userRepository.findByServiceid(serving.getId());
+		for (User user : users) {
+			user.setScore(score + user.getScore());
+		}
+		Iterable<Service_partake> s_partake = ser_par.findByServiceid(serving.getId());
+		for(Service_partake service_partake:s_partake) {
+			service_partake.setFlag((byte) 1);
+		}
+		userRepository.save(users);
+		ser_par.save(s_partake);
+		serviceRepository.save(serving);
+	}
+
+	//发起服务请求
+	public void startServing(Serving serving) {
+		serviceRepository.save(serving);
 	}
 }

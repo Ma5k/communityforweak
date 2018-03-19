@@ -15,4 +15,9 @@ public interface ServingInfoService {
 	public Page<Serving> findBypage(int page, int size);
 	
 	public Iterable<Serving> findByParticipantid(String parid);
+	
+	//发起服务
+	public void startServing(Serving serving);
+	//结算服务
+	public void settlement(int score, Serving serving);
 }

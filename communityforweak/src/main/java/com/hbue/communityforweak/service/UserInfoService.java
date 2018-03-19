@@ -14,4 +14,7 @@ public interface UserInfoService {
 	public User findByIdcard(String idcard);
 	
 	public Iterable<User> findByServiceid(int serid);
+	
+	//修改个人信息
+	public void modify(User user);
 }

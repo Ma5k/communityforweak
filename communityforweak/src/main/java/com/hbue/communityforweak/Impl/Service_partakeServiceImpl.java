@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.hbue.communityforweak.dao.Service_partakeRepository;
 import com.hbue.communityforweak.entry.Service_partake;
+import com.hbue.communityforweak.entry.Serving;
+import com.hbue.communityforweak.entry.User;
 import com.hbue.communityforweak.service.Service_partakeService;
 
 @Service
@@ -34,5 +36,14 @@ public class Service_partakeServiceImpl implements Service_partakeService{
 
 	public void Save(Service_partake ser_par) {
 		s_pRepository.save(ser_par);
+	}
+
+	//接受服务请求
+	public void acceptServing(User user, Serving serving) {
+		Service_partake service_partake = new Service_partake();
+		service_partake.setServiceid(serving.getId());
+		service_partake.setUserid(user.getUserid());
+		service_partake.setTel(user.getTel());
+		s_pRepository.save(service_partake);
 	}
 }

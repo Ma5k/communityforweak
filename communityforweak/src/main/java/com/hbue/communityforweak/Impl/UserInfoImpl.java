@@ -50,4 +50,8 @@ public class UserInfoImpl implements UserInfoService {
 		return userRepository.findByServiceid(serid);
 	}
 
+	public void modify(User user) {
+		userRepository.save(user);
+	}
+
 }
