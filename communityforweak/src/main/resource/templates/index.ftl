@@ -5,6 +5,7 @@
 		<title></title>
 		<link rel="stylesheet" href="/css/index.css">
 		<link rel="stylesheet" href="/css/common.css">
+		<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 	</head>
 	<body>
 		<!--顶部部分-->
@@ -101,15 +102,15 @@
 		</div> -->
 		
 		<div class="act">
-			<div class="lact">
+			<div class="lact" id="act1">
 				<div class="img" id="">
-					<img src="/img/a.png">
+					<img id="act1_img" src="/img/a.png">
 				</div>
 				<div class="disc" id="">
-					<a href="">免费体检</a>
+					<a id="act1_actname" href="">免费体检</a>
 					<div class="disca">
-					<a href="">详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述</a>
-					<button type="button" class="btn-v">报名</button>
+					<a id="act1_actdoc" href="">详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述</a>
+					<button type="button" class="btn-v" id="act1_actid" actid="">报名</button>
 				</div>
 				
 				</div>
@@ -117,13 +118,13 @@
 			</div>
 			<div class="ract">
 				<div class="img" id="">
-					<img src="/img/a.png">
+					<img id="act2_img" src="/img/a.png">
 				</div>
 				<div class="disc" id="">
-					<a href="">拔河比赛</a>
+					<a id="act2_actname" href="">拔河比赛</a>
 					<div class="disca">
-					<a href="">详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述</a>
-					<button type="button" class="btn-v">报名</button>
+					<a id="act2_actdoc" href="">详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述</a>
+					<button type="button" class="btn-v" id="act2_actid" actid="">报名</button>
 				</div>
 				
 				</div>
@@ -131,26 +132,26 @@
 			</div>
 			<div class="lact">
 				<div class="img" id="">
-					<img src="/img/a.png">
+					<img id="act3_img" src="/img/a.png">
 				</div>
 				<div class="disc" id="">
-					<a href="">免费体检</a>
+					<a id="act3_actname" href="">免费体检</a>
 					<div class="disca">
-					<a href="">详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述</a>
-					<button type="button" class="btn-v">报名</button>
+					<a id="act3_actdoc" href="">详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述</a>
+					<button type="button" class="btn-v" id="act3_actid" actid="">报名</button>
 					</div>
 				</div>
 				
 			</div>
 			<div class="ract">
 				<div class="img" id="">
-					<img src="/img/a.png">
+					<img id="act4_img" src="/img/a.png">
 				</div>
 				<div class="disc" id="">
-					<a href="">拔河比赛</a>
+					<a id="act4_actname" href="">拔河比赛</a>
 					<div class="disca">
-					<a href="">详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述</a>
-					<button type="button" class="btn-v">报名</button>
+					<a id="act4_actdoc" href="">详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述详细描述</a>
+					<button type="button" class="btn-v" id="act4_actid" actid="">报名</button>
 				</div>
 				</div>
 				
@@ -186,4 +187,6 @@
 
 
 	</body>
+	
+		<script type="text/javascript" src="/js/index.js"></script>
 </html>
