@@ -1,0 +1,17 @@
+body{
+	width: 950px;
+	height: 360px;
+	background: #f3f5f7;
+}
+.user_jifen{
+	padding-left: 50px;
+	padding-top: 20px;
+}
+.jilu{
+	font-size: 18px;
+	font-family: "微软雅黑";
+	margin-top: 20px;
+}
+.jilu span{
+	display: block;
+}

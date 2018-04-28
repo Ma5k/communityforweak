@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hbue.communityforweak.entry.User;
 import com.hbue.communityforweak.service.UserInfoService;
 
@@ -25,36 +26,35 @@ public class UserController {
 
 	@GetMapping(path = "/login")
 	public String login(Map<String, Object> map) {
-		map.put("msg", "");
+		map.put("msg", "用户名为数字");
 		return "login";
 	}
 
-	//验证登录
 	@PostMapping("/loginVerify")
 	public String loginVerify(@RequestParam String userid, @RequestParam String password, HttpSession session,
 			Map<String, Object> map) {
-		User user = userInfoService.findByUserid(userid);
+		User user = userInfoService.getUser(userid);
 		if (user == null) {
 			map.put("msg", "用户名不存在!");
-			return "redirect:/user/login";
+			return "login";
 		} else if (user.getPassword().equals(password)) {
 			map.put("msg", "登录成功!");
 			session.setAttribute("user", user);
-			return "redirect:/index";
+			map.put("all",userInfoService.getTypeUser(1+""));
+			return "redirect:/activity/page";
 		} else {
 			map.put("msg", "密码错误!");
-			return "redirect:/user/login";
+			return "login";
 		}
 	}
 
-	@GetMapping("/register")
+	@GetMapping("/regist")
 	public String register(Map<String, Object> map) {
 		map.put("msg", "");
-		return "register";
+		return "regist";
 	}
 
-	//验证注册
-	@PostMapping("/registerVerify")
+	@PostMapping("/registVerify")
 	public String registerVerify(HttpServletRequest request, Map<String, Object> map) {
 		String userid = request.getParameter("userid");
 		String username = request.getParameter("username");
@@ -62,68 +62,117 @@ public class UserController {
 		String passwordRe = request.getParameter("passwordRe");
 		String address = request.getParameter("address");
 		String tel = request.getParameter("tel");
+		System.out.println(userid+username+password+passwordRe+address+tel);
 		if (userid.equals("") || username.equals("") || password.equals("") || passwordRe.equals("") || address.equals("") || tel.equals("")) {
 			map.put("msg", "请填写完整信息！");
-			return "redirect:/user/register";
-		} else if (userInfoService.findByUserid(userid) != null) {
+			return "regist";
+		} else if (userInfoService.getUser(userid) != null) {
 			map.put("msg", "用户id已被注册！");
-			return "redirect:/user/register";
+			return "regist";
 		} else if (password.equals(passwordRe)) {
 			User nuser = new User();
 			nuser.setUserid(userid);
 			nuser.setUsername(username);
 			nuser.setPassword(password);
 			nuser.setScore(0);
+			nuser.setPermission((byte) 1);
 			nuser.setTel(tel);
 			nuser.setAddress(address);
 			userInfoService.save(nuser);
 			map.put("msg", "注册成功请登录！");
-			return "redirect:/user/login";
+			return "login";
 		} else {
 			map.put("msg", "两次输入密码不同！");
-			return "redirect:/user/register";
+			return "regist";
 		}
 	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session, Map<String, Object> map) {
-		session.removeAttribute("user");
-		map.put("msg", "您已注销，请重新登录！");
-		return "redirect:/user/login";
+	public String logout(HttpSession session) {
+		JSONObject reObject = new JSONObject();
+		try {
+			session.removeAttribute("user");
+			reObject.put("data", "注销成功");
+		}
+		catch (Exception e) {
+			reObject.put("error", "注销失败！请检查网络");
+		}
+		return "login";
 	}
 	
-	@GetMapping("/all")
-	public @ResponseBody Iterable<User> getAll(){
-		return userInfoService.getAllUsers();
+	@GetMapping("/updateUserInfo")
+	@ResponseBody
+	public String updateUserInfo(@RequestParam String userid,@RequestParam String username,@RequestParam String address,@RequestParam String tel, HttpSession session) {
+		JSONObject reObject = new JSONObject();
+		try {
+			userInfoService.update(userid, username, address, tel);
+			User user = userInfoService.getUser(userid);
+			session.setAttribute("user", user);
+			reObject.put("data", null);
+		}
+		catch (Exception e) {
+			reObject.put("error", "修改信息失败");
+		}
+		return reObject.toString();
 	}
 	
-	@GetMapping("/byUserid")
-	public @ResponseBody User byUserid(@RequestParam String userid) {
-		return userInfoService.findByUserid(userid);
+	@GetMapping("/appUserInfo")
+	@ResponseBody
+	public String appUserInfo(@RequestParam String userid, @RequestParam String idcard) {
+		JSONObject reObject = new JSONObject();
+		try {
+			userInfoService.appPermission(userid, idcard);
+			reObject.put("data", null);
+		}
+		catch (Exception e) {
+			reObject.put("error", "优待申请失败");
+		}
+		return reObject.toString();
 	}
 	
-	@GetMapping("/byUsername")
-	public @ResponseBody Iterable<User> byUsername(@RequestParam String username) {
-		return userInfoService.findByUsername(username);
+	@GetMapping("/addScore")
+	@ResponseBody
+	public String addScore(@RequestParam String sessionUserid, @RequestParam String serverid, @RequestParam String userid, @RequestParam String score) {
+		JSONObject reObject = new JSONObject();
+		try {
+			userInfoService.addScore(sessionUserid, serverid, userid, score);
+			reObject.put("data", "发放成功");
+		}
+		catch (Exception e) {
+			reObject.put("error", "积分发放失败");
+		}
+		return reObject.toString();
 	}
 	
-	@GetMapping("/byIdcard")
-	public @ResponseBody User byIdcard(@RequestParam String idcard) {
-		return userInfoService.findByIdcard(idcard);
+	@GetMapping("/personInfo")
+	public String personInfo(Map<String, Object> map) {
+		map.put("msg", "");
+		return "personInfo";
 	}
 	
-	@GetMapping("/byAddress")
-	public @ResponseBody Iterable<User> byAddress(@RequestParam String address){
-		return userInfoService.findByAddress(address);
+	//管理员页面
+	@GetMapping("/admin")
+	public String admin(){
+		return "admin";
 	}
 	
-	@GetMapping("/byPermission")
-	public @ResponseBody Iterable<User> byPermission(@RequestParam Byte permission){
-		return userInfoService.findByPermission(permission);
+	//用户信息
+	@GetMapping("/user_center")
+	public String user_center(Map<String, Object> map) {
+		map.put("msg", "");
+		return "user_center";
 	}
 	
-	@GetMapping("/byServiceid")
-	public @ResponseBody Iterable<User> byServiceid(@RequestParam int serid){
-		return userInfoService.findByServiceid(serid);
+	
+	@GetMapping("/user_service")
+	public String user_service(Map<String, Object> map) {
+		map.put("msg", "");
+		return "user_service";
+	}
+	
+	//申请优待
+	@GetMapping("/user_pre")
+	public String user_pre() {
+		return "user_pre";
 	}
 }

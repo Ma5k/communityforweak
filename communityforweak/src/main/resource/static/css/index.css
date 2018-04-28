@@ -1,0 +1,275 @@
+body{
+	width: 100%;
+	background: #f3f5f7;
+}
+
+.top{
+	width: 100%;
+	height: 83px;
+	background: #0084ff;
+}
+.top .top-text{
+	width: 1200px;
+	height: 83px;
+	margin: 0 auto;
+}
+.top .top-text .logo1{
+	height: 83px;
+}
+.top .top-title{
+	margin-left: 50px;
+}
+
+.top .top-title li{
+	width: 90px;
+	height: 83px;
+	font-family: "微软雅黑";
+	font-size: 18px;
+	line-height: 83px;
+	text-align: center;
+	
+}
+.top .top-title li a{
+	color: #FFFFFF;
+}
+
+.top .top-title li:hover{
+	background: #1d3768;
+}
+
+.head-portrai{
+	width: 140px;
+	height: 83px;
+	overflow: hidden;
+
+}
+.head-portrai .people-name a{
+ width: 100px;
+ font-size: 14px;
+ font-family: "微软雅黑";
+ color:#92bff8 ;
+ margin-top: 8px;
+}
+.head-portrai .logo2{
+	margin-top: 10px;
+	margin-left: 20px;
+	
+}
+.btn{
+	border:0;
+	background: transparent;
+}
+.quit{
+	text-align: center;
+	line-height: 83px;
+	float: right;
+}
+/*当前位置部分*/
+.position{
+	width: 1200px;
+	height: 42px;
+	border-bottom: 1px solid #cdd7e3;
+	margin: 0 auto;
+	line-height: 42px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	background: #FFFFFF;
+	margin-top: 10px;
+}
+.position .position-text .po-logo{
+	margin-left:20px;
+	margin-top: 12px;
+}
+
+.posi,.ftp{
+	color: #666;
+	margin-left: 13px;
+}
+
+.api{
+	margin-left: 13px;
+	color: #09a9f1;
+}
+
+/*服务分类*/
+
+.serve{
+	width: 1200px;
+	height: 64px;
+	margin: 0 auto;
+	color: #333;
+	margin-top: 10px;
+	border-bottom: 1px solid #cdd7e3;
+	font-weight: bold;
+	font-size: 16px;
+
+}
+.serve .serve-name {
+	width: 60px;
+	height: 64px;
+	color: #FFFFFF;
+	background: #34d0be;
+	text-align: center;
+	
+}
+.serve .serve-name span{
+	display: block;
+	margin-top: 10px;
+}
+
+.serve .fon{
+	width: 44px;
+	margin-left: 20px;
+	line-height: 64px;
+}
+
+.serve .fon l a:hover{
+	background-color: #1d3768;
+}
+
+.serve .clay li{
+	margin-left: 30px;
+	line-height: 64px;
+	float: left;
+}
+.select{
+	color: #09a9f1;
+	cursor: pointer;
+}
+
+/*.page{
+	height: 60px;
+	margin:25px 0 auto;
+	overflow: hidden;
+	clear: both;
+	text-align: center;
+}
+.page .disabled_page{
+	width: 40px;
+	height: 40px;
+}
+.page .test-page-tag{
+	width: 32px;
+	height: 32px;
+
+	font-family: "微软雅黑";
+	font-size: 40px;
+}
+.page .test-page-tag a:hover{
+	background-color: #1d3768;
+}*/
+
+/*活动服务*/
+.act{
+	width: 1200px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+.lact{
+	width: 50%;
+	height: 200px;
+	float: left;
+	margin-top: 10px;
+}
+.ract{
+	width: 50%;
+	height: 200px;
+	float: right;
+	margin-top: 10px;
+}
+.act .img{
+	width: 300px;
+	height: 200px;
+	float: left;
+}
+.act .disc{
+	width: 300px;
+	height: 200px;
+	float: right;
+}
+.act .img img{
+	width: 300px;
+	height: 200px;
+}
+.act .disc a{
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #888;
+	line-height: 50px;
+	padding-left: 50px;	
+	
+}
+
+.act .disc a:hover{
+	color: red;
+}
+.act .disca{
+	width: 300px;
+	height: 200px;
+}
+.act .disca a{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #888;
+	line-height: 20px;
+	padding-left: 50px;
+}
+.btn-v{
+	width: 70px;
+	height: 30px;
+	margin-left: 220px;
+	margin-bottom: 10px;
+	border:0;
+	border-radius: 3px;
+	background-color: #8aafff;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 18px;
+}
+
+/*分页*/
+#setpage {
+    margin: 15px auto;
+    margin-top: 10px;
+    text-align: center;
+}
+#setpage a:link,#setpage a:visited,#setpage a:hover,#setpage .current,#setpage #info{ 
+    border:1px solid #DDD; 
+    background:#0d6cbf; 
+    display:inline-block; 
+    margin:1px; 
+    text-decoration:none; 
+    text-align:center; 
+    color:#fff; 
+    padding: 5px 10px; 
+    font-size: 16px;
+    border-radius: 5px;
+} 
+#setpage a:hover{ 
+    border:1px solid #0d6cbf; 
+    background: #0d6cbf; 
+} 
+#setpage .current{ 
+    border:1px solid #0d6cbf; 
+    background: #fff; 
+    margin:1px; 
+    color: #000; 
+    text-decoration: underline;
+} 
+#setpage #info{ 
+    width:auto; 
+}
+/*底部*/
+.footer{
+	width: 100%;
+	height: 83px;
+	background: #0084ff;
+	padding-top: 20px;
+}
+.footer-text{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 16px;
+}

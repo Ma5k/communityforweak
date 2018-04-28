@@ -1,0 +1,58 @@
+body{
+	width: 930px;
+	background: #f3f5f7;
+}
+.ract{
+	height: 240px;
+	margin-left: 10px;
+}
+.img{
+	width: 280px;
+	height: 230px;
+	margin-top: 10px;
+	float: left;
+}
+.disc{
+	width: 630px;
+	height: 200px;
+	float: right;
+}
+.img img{
+	width: 280px;
+	height: 200px;
+}
+.disc a{
+	font-family: "微软雅黑";
+	font-size: 16px;
+	color: #888;
+	line-height: 50px;
+	padding-left: 50px;	
+	
+}
+
+.disc a:hover{
+	color: red;
+}
+.disca{
+	width: 630px;
+	height: 200px;
+}
+.disca a{
+	font-family: "微软雅黑";
+	font-size: 14px;
+	color: #888;
+	line-height: 20px;
+	padding-left: 50px;
+}
+.btn-v{
+	width: 70px;
+	height: 30px;
+	margin-left: 220px;
+	margin-bottom: 10px;
+	border:0;
+	border-radius: 3px;
+	background-color: #8aafff;
+	text-align: center;
+	font-family: "微软雅黑";
+	font-size: 18px;
+}

@@ -2,11 +2,13 @@ package com.hbue.communityforweak.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONObject;
 import com.hbue.communityforweak.entry.Activity;
 import com.hbue.communityforweak.service.ActivityInfoService;
 
@@ -17,16 +19,93 @@ public class ActivityController {
 	@Autowired
 	private ActivityInfoService activityInfoService;
 	
-	@GetMapping(path="/byClassify")
-	public @ResponseBody Iterable<Activity> getActivitiesByClassify(@RequestParam String classify){
-		System.out.println("byClassify" + classify);
-		Iterable<Activity> activities = activityInfoService.findByClassify(classify);
-		return activities;
+	/**
+	 * data 是进行中的活动(置顶)
+	 * data2 是策划中的活动
+	 * @return
+	 */
+	@GetMapping("/getActivityList")
+	@ResponseBody
+	public String getActivityList() {
+		JSONObject reObject = new JSONObject();
+		try {
+			Iterable<Activity> dataNodes = activityInfoService.getActiveList(1);
+			Iterable<Activity> dataNodes2 = activityInfoService.getActiveList(0); 
+			reObject.put("data", dataNodes);
+			reObject.put("data2", dataNodes2);
+		}
+		catch (Exception e) {
+			reObject.put("error", "获取活动列表失败");
+		}
+		return reObject.toString();
 	}
 	
-	@GetMapping(path="/all")
-	public @ResponseBody Iterable<Activity> getAllActivitys(){
-		Iterable<Activity> activities = activityInfoService.getAllActivitys();
-		return activities;
+	@GetMapping("/findActivityList")
+	@ResponseBody
+	public String findActivityList(@RequestParam String classify) {
+		JSONObject reObject = new JSONObject();
+		try {
+			Iterable<Activity> dataNodes = activityInfoService.findActiveList(classify);
+			reObject.put("data", dataNodes);
+		} catch (Exception e) {
+			reObject.put("error", "筛选活动列表失败");
+		}
+		return reObject.toString();
 	}
+	
+	@GetMapping("/getActivingList")
+	public String getActivingList(ModelMap modelMap) {
+		try {
+			Iterable<Activity> dataNodes = activityInfoService.getActiveList(1);
+			modelMap.addAttribute("data", dataNodes);
+		}
+		catch (Exception e) {
+			modelMap.addAttribute("error", "获取进行中的活动列表失败");
+		}
+		return "getActivingList";
+	}
+	
+
+	@GetMapping("/userActivityList")
+	public String userActivityList(ModelMap modelMap, @RequestParam String userid) {
+		try {
+			Iterable<Activity> dataNodes = activityInfoService.userActivityList(userid);
+			modelMap.addAttribute("data", dataNodes);
+		}
+		catch (Exception e) {
+			modelMap.addAttribute("error", "获取参加活动列表失败");
+		}
+		return "userActivityList";
+	}
+	
+	@GetMapping("/activityComment")
+	@ResponseBody
+	public String activityComment(@RequestParam String userid, @RequestParam int activityid, @RequestParam String comment) {
+		JSONObject reObject = new JSONObject();
+		try {
+			activityInfoService.comment(userid, activityid, comment);
+			reObject.put("data", "评论成功");
+		}
+		catch (Exception e) {
+			reObject.put("error", "获取参加活动列表失败");
+		}
+		return reObject.toString();
+	}
+	
+	@GetMapping(path="/page")
+	public String page(ModelMap modelMap,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "4") int size) {
+		modelMap.addAttribute("pageResult", activityInfoService.findBypage(page, size));
+		return "activity";
+	}
+	
+	@GetMapping(path="/addActivity")
+	public String addActivity() {
+		return "addActivity";
+	}
+	
+	
 }
+
+
