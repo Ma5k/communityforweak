@@ -107,12 +107,57 @@ public class ServerController {
 		return "addService";
 	}
 	
-	@GetMapping(path="/page")
-	public String page(ModelMap modelMap,
+	@GetMapping(path="/byPageAndClassify0")
+	public String byPageAndClassify0(ModelMap modelMap,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "4") int size) {
-		modelMap.addAttribute("pageResult", serverInfoService.findBypage(page, size));
-		//System.out.println("=============================="+ serverInfoService.findBypage(page, size).getContent().get(1).getServname());
+		modelMap.addAttribute("pageResult", serverInfoService.findBypage(0, page, size));
+		modelMap.addAttribute("classify", "0");
+		return "server";
+	}
+	
+	@GetMapping(path="/byPageAndClassify1")
+	public String byPageAndClassify1(ModelMap modelMap,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "4") int size) {
+		modelMap.addAttribute("pageResult", serverInfoService.findPageByClassify(0, "1", page, size));
+		modelMap.addAttribute("classify", "1");
+		return "server";
+	}
+	
+	@GetMapping(path="/byPageAndClassify2")
+	public String byPageAndClassify2(ModelMap modelMap,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "4") int size) {
+		modelMap.addAttribute("pageResult", serverInfoService.findPageByClassify(0, "2", page, size));
+		modelMap.addAttribute("classify", "2");
+		return "server";
+	}
+	
+	@GetMapping(path="/byPageAndClassify3")
+	public String byPageAndClassify3(ModelMap modelMap,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "4") int size) {
+		modelMap.addAttribute("pageResult", serverInfoService.findPageByClassify(0, "3", page, size));
+		modelMap.addAttribute("classify", "3");
+		return "server";
+	}
+	
+	@GetMapping(path="/byPageAndClassify4")
+	public String byPageAndClassify4(ModelMap modelMap,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "4") int size) {
+		modelMap.addAttribute("pageResult", serverInfoService.findPageByClassify(0, "4", page, size));
+		modelMap.addAttribute("classify", "4");
+		return "server";
+	}
+	
+	@GetMapping(path="/byPageAndClassify5")
+	public String byPageAndClassify5(ModelMap modelMap,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "4") int size) {
+		modelMap.addAttribute("pageResult", serverInfoService.findPageByClassify(0, "5", page, size));
+		modelMap.addAttribute("classify", "5");
 		return "server";
 	}
 }

@@ -1,11 +1,13 @@
 package com.hbue.communityforweak.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
+import com.hbue.communityforweak.entry.Activity;
 import com.hbue.communityforweak.entry.Server;
 
-public interface Serverdao extends JpaRepository<Server, Long> {
+public interface Serverdao extends JpaRepository<Server, Long>,JpaSpecificationExecutor<Server> {
 	
 	// 服务列表 √
 	Iterable<Server> findByActive(int active);

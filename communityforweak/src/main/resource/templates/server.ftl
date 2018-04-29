@@ -13,9 +13,9 @@
 			<div class="top-text">
 				<img src="/img/serv.png" class="l logo1"/>
 			  <ul class="top-title l">
-				<li class="l"><a href="../activity/page">首 页</a></li>
-				<li class="l"><a href="../activity/page">活 动</a></li>
-				<li class="l"><a href="../server/page">服 务</a></li>
+				<li class="l"><a href="../activity/byPageAndClassify0">首 页</a></li>
+				<li class="l"><a href="../activity/byPageAndClassify0">活 动</a></li>
+				<li class="l"><a href="../server/byPageAndClassify0">服 务</a></li>
 				<li class="l"><a href="../server/addService">申请服务</a></li>
 				<#if 0 == Session.user.permission>
 				<li class="l"><a href="../user/admin">管理员</a></li>
@@ -49,27 +49,6 @@
 		<div class="serve">
 			<div class="serve-name l">
 				<span>
-					活动
-				</span>
-				<span>
-					分类
-				</span>
-				
-			</div>
-			<div class="fon l">
-				<a href="">全部</a>
-			</div>
-			<ul id="classify" class="clay">
-				<li id="">积分兑换</li>
-				<li id="">线下集会</li>
-				<li id="">闲置互换</li>
-				<li id="">郊游踏青</li>
-				<li id="">其他</li>
-			</ul>
-		</div>
-		<div class="serve">
-			<div class="serve-name l">
-				<span>
 					服务
 				</span>
 				<span>
@@ -78,14 +57,14 @@
 				
 			</div>
 			<div class="fon l">
-				<a href="">全部</a>
+				<a href="../server/byPageAndClassify0">全部</a>
 			</div>
 			<ul id="classify" class="clay">
-				<li id="">清洁</li>
-				<li id="">陪伴</li>
-				<li id="">医护</li>
-				<li id="">照看</li>
-				<li id="">其他</li>
+				<li id=""><a href="../server/byPageAndClassify1">清洁</a></li>
+				<li id=""><a href="../server/byPageAndClassify2">陪伴</a></li>
+				<li id=""><a href="../server/byPageAndClassify3">医护</li>
+				<li id=""><a href="../server/byPageAndClassify4">照看</li>
+				<li id=""><a href="../server/byPageAndClassify5">其他</li>
 			</ul>
 		</div>
 
@@ -111,9 +90,10 @@
 		</div>
 
 		<div id="setpage">
+			<#if classify??>
 			<#import "pageShow.ftl" as page>
-                <@page.pageShow pageResult.totalPages, pageResult.number, "../server/page", pageResult.size, "gray"/><br/>
-
+                <@page.pageShow pageResult.totalPages, pageResult.number, "../server/byPageAndClassify" + classify, pageResult.size, "gray"/><br/>
+		</#if>
 		</div>
 
 

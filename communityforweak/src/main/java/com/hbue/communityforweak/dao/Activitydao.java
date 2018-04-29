@@ -1,11 +1,12 @@
 package com.hbue.communityforweak.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 import com.hbue.communityforweak.entry.Activity;
 
-public interface Activitydao extends JpaRepository<Activity, Long>{
+public interface Activitydao extends JpaRepository<Activity, Long>,JpaSpecificationExecutor<Activity>{
 	
 	// 查找所有开启的活动 √
 	Iterable<Activity> findByActive(int active);

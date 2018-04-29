@@ -31,7 +31,7 @@ public class Activity implements Serializable {
 	
 	private int scoreadd;
 	
-	private String classify;
+	private int classify;
 
 	public Integer getId() {
 		return id;
@@ -97,11 +97,11 @@ public class Activity implements Serializable {
 		this.scoreadd = scoreadd;
 	}
 
-	public String getClassify() {
+	public int getClassify() {
 		return classify;
 	}
 
-	public void setClassify(String classify) {
+	public void setClassify(int classify) {
 		this.classify = classify;
 	}
 

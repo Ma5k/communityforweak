@@ -99,7 +99,7 @@ public class PageController {
 			Activity activity = new Activity();
 			activity.setActive(0);
 			activity.setActivityname(request.getParameter("activityname"));
-			activity.setClassify(request.getParameter("classify"));
+			activity.setClassify(Integer.parseInt(request.getParameter("classify")));
 			activity.setStartime(MyUtil.StringToDate(request.getParameter("startime")));
 			activity.setEndtime(MyUtil.StringToDate(request.getParameter("endtime")));
 			activity.setDocument(request.getParameter("document"));

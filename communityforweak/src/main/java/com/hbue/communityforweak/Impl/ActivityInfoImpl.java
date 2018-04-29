@@ -3,14 +3,20 @@ package com.hbue.communityforweak.Impl;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.CriteriaQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import com.hbue.communityforweak.dao.ActivityPartakedao;
 import com.hbue.communityforweak.dao.Activitydao;
@@ -66,18 +72,44 @@ public class ActivityInfoImpl implements ActivityInfoService {
 	}
 	
 	//分页查找
-	public Page<Activity> findBypage(int page, int size) {
-		Order order1 = new Order(Direction.DESC, "startime");  
-		Order order2 = new Order(Direction.DESC, "scoreadd");  
-		Sort sort = new Sort(order1, order2);
-		
-		PageRequest pageable = new PageRequest(page, size, sort);
-		Page<Activity> pageAct = activitydao.findAll(pageable);
-		return pageAct;
+	public Page<Activity> findBypage(final int active, int page, int size) {
+		Specification<Activity> specification = new Specification<Activity>() {
+
+			@Override
+			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Path<Integer> $active = root.get("active");
+				Predicate _active = cb.equal($active, active);
+				return _active;
+			}
+		};
+		Pageable pageable = new PageRequest(page, size);
+		return activitydao.findAll(specification, pageable);
 	}
 
 	//查找某一个活动
 	public Activity findOne(int activityid) {
 		return activitydao.findById(activityid);
 	}
+	
+	//带条件分页查找
+	public Page<Activity> findPageByClassify(final int active, final String classify, int page, int size) {
+		Specification<Activity> specification = new Specification<Activity>() {
+
+			@Override
+			public Predicate toPredicate(Root<Activity> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+				Path<String> $classify = root.get("classify");
+				Path<Integer> $active = root.get("active");
+				Predicate _classify = cb.equal($classify, classify);
+				Predicate _active = cb.equal($active, active);
+				
+				Predicate p = cb.and(_classify, _active);
+				return p;
+			}
+		};
+		Pageable pageable = new PageRequest(page, size);
+		return activitydao.findAll(specification, pageable);
+	}
+	
+	
+	
 }

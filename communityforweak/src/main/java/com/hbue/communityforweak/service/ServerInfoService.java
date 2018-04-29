@@ -51,5 +51,10 @@ public interface ServerInfoService {
 	/**
 	 * 分页
 	 */
-	public Page<Server> findBypage(int page, int size);
+	public Page<Server> findBypage(final int active, int page, int size);
+	
+	/**
+	 * 带条件分页查询
+	 */
+	public Page<Server> findPageByClassify(final int active, final String classify, int page, int size);
 }

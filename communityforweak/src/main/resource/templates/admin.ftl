@@ -18,9 +18,9 @@
 			<div class="top-text">
 				<img src="/img/serv.png" class="l logo1"/>
 			  <ul class="top-title l">
-				<li class="l"><a href="../activity/page">首 页</a></li>
-				<li class="l"><a href="../activity/page">活 动</a></li>
-				<li class="l"><a href="../server/page">服 务</a></li>
+				<li class="l"><a href="../activity/byPageAndClassify0">首 页</a></li>
+				<li class="l"><a href="../activity/byPageAndClassify0">活 动</a></li>
+				<li class="l"><a href="../server/byPageAndClassify0">服 务</a></li>
 				<li class="l"><a href="../server/addService">申请服务</a></li>
 				<#if 0 == Session.user.permission>
 				<li class="l"><a href="../user/admin">管理员</a></li>

@@ -2,6 +2,7 @@ package com.hbue.communityforweak.service;
 
 import java.util.List;
 
+import org.codehaus.groovy.util.Finalizable;
 import org.springframework.data.domain.Page;
 
 import com.hbue.communityforweak.entry.Activity;
@@ -39,12 +40,17 @@ public interface ActivityInfoService {
 	/**
 	 * 分页
 	 */
-	public Page<Activity> findBypage(int page, int size);
+	public Page<Activity> findBypage(final int active, int page, int size) ;
 	
 	/**
 	 * 查找某个活动
 	 */
 	public Activity findOne(int activityid);
+	
+	/**
+	 * 带条件的分页查询
+	 */
+	public Page<Activity> findPageByClassify(final int active, final String classify, int page, int size);
 	
 	
 }
