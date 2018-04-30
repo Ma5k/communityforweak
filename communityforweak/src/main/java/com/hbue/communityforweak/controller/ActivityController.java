@@ -78,6 +78,7 @@ public class ActivityController {
 		return "userActivityList";
 	}
 	
+	
 	@GetMapping("/activityComment")
 	@ResponseBody
 	public String activityComment(@RequestParam String userid, @RequestParam int activityid, @RequestParam String comment) {

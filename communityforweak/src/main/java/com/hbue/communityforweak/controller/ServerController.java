@@ -14,6 +14,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hbue.communityforweak.entry.Server;
 import com.hbue.communityforweak.entry.pvo.ServerUser;
 import com.hbue.communityforweak.service.ServerInfoService;
+import com.mysql.fabric.xmlrpc.base.Data;
 
 @Controller
 @RequestMapping(path="/server")
@@ -88,18 +89,31 @@ public class ServerController {
 		return "userAppServerList";
 	}
 	
-	@GetMapping("/getServerUserList")
-	@ResponseBody
-	public String getServerUserList(@RequestParam String serverid) {
-		JSONObject reObject = new JSONObject();
+	//获取用户发起的进行中的服务
+	@GetMapping("/runningSerList")
+	public String runningSerList(ModelMap modelMap, @RequestParam String userid) {
 		try {
-			List<ServerUser> dataNodes = serverInfoService.getServerUserList(serverid);
-			reObject.put("data", dataNodes);
+			Iterable<Server> data = serverInfoService.findUserRunningServer(userid);
+			modelMap.addAttribute("data", data);
 		}
 		catch (Exception e) {
-			reObject.put("error", "获取参与用户失败");
+			modelMap.addAttribute("error", "获取进行中的用户服务失败");
 		}
-		return reObject.toString();
+		return "runningSerList";
+	}
+	
+	@GetMapping("/getServerUserList")
+	public String getServerUserList(ModelMap modelMap, @RequestParam String serverid) {
+		try {
+			List<ServerUser> dataNodes = serverInfoService.getServerUserList(serverid);
+			Server server = serverInfoService.getOne(serverid);
+			modelMap.addAttribute("server", server);
+			modelMap.addAttribute("data", dataNodes);
+		}
+		catch (Exception e) {
+			modelMap.addAttribute("error", "获取参与用户失败");
+		}
+		return "giveScore";
 	}
 	
 	@GetMapping(path="/addService")

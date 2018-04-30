@@ -110,6 +110,14 @@ public class ActivityInfoImpl implements ActivityInfoService {
 		return activitydao.findAll(specification, pageable);
 	}
 	
-	
+	//判断用户是否已参加活动
+	public Boolean alreadyPartakeAct(String userid, int activityid) {
+		Activitypartake ac = activityPartakedao.findByUseridAndActivityid(userid, activityid);
+		if(ac != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 }

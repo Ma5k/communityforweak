@@ -52,5 +52,9 @@ public interface ActivityInfoService {
 	 */
 	public Page<Activity> findPageByClassify(final int active, final String classify, int page, int size);
 	
+	/**
+	 * 判断用户是否已参加活动
+	 */
+	public Boolean alreadyPartakeAct(String userid, int activityid);
 	
 }

@@ -130,4 +130,14 @@ public class ServerInfoImpl implements ServerInfoService{
 			Pageable pageable = new PageRequest(page, size);
 			return serverdao.findAll(specification, pageable);
 		}
+
+		@Override
+		public Iterable<Server> findUserRunningServer(String userid) {
+			return serverdao.findByUseridAndActive(userid, 0);
+		}
+
+		@Override
+		public Server getOne(String serverid) {
+			return serverdao.findById(Integer.parseInt(serverid));
+		}
 }

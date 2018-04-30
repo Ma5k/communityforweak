@@ -20,48 +20,52 @@ import com.hbue.communityforweak.service.UserInfoService;
 
 @Controller
 public class PageController {
-	
+
 	@Autowired
 	private UserInfoService userInfoService;
-	
+
 	@Autowired
 	private ServerInfoService serverInfoService;
-	
+
 	@Autowired
 	private ActivityInfoService activityInfoService;
-	
 
 	@GetMapping("/partakeActivity")
 	@ResponseBody
-	public String partakeActivity(@RequestParam String userid, @RequestParam String activityid, @RequestParam String tel, ModelMap model) {
+	public String partakeActivity(@RequestParam String userid, @RequestParam String activityid,
+			@RequestParam String tel, ModelMap model) {
 		JSONObject reObject = new JSONObject();
 		try {
-			userInfoService.partakeActive(userid, activityid, tel);
-			reObject.put("data", "参加成功");
+			if (activityInfoService.alreadyPartakeAct(userid, Integer.parseInt(activityid))) {
+				reObject.put("error", "您已参加该活动请勿重复报名");
+			} else {
+				userInfoService.partakeActive(userid, activityid, tel);
+				reObject.put("data", "参加成功");
+			}
 		} catch (Exception e) {
 			reObject.put("error", "活动参加失败");
 		}
 		return reObject.toString();
 	}
-	
+
 	@GetMapping("/partakeServer")
 	@ResponseBody
-	public String partakeServer(@RequestParam String userid, @RequestParam String serviceid, @RequestParam String tel, ModelMap model) {
+	public String partakeServer(@RequestParam String userid, @RequestParam String serviceid, @RequestParam String tel,
+			ModelMap model) {
 		JSONObject reObject = new JSONObject();
 		try {
 			userInfoService.partakeServer(userid, serviceid, tel);
 			reObject.put("data", "参加成功");
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			reObject.put("error", "参加服务失败");
 		}
 		return reObject.toString();
 	}
-	
+
 	@GetMapping("/appService")
 	@ResponseBody
-	public String appService(@RequestParam String userid, @RequestParam String servicename, @RequestParam String tel, 
-			@RequestParam String ineed, @RequestParam String startime, @RequestParam String endtime, 
+	public String appService(@RequestParam String userid, @RequestParam String servicename, @RequestParam String tel,
+			@RequestParam String ineed, @RequestParam String startime, @RequestParam String endtime,
 			@RequestParam String scoreadd, @RequestParam String classify) {
 		JSONObject reObject = new JSONObject();
 		try {
@@ -75,13 +79,11 @@ public class PageController {
 			server.setServername(servicename);
 			server.setTel(tel);
 			server.setUserid(userid);
-			
-			
+
 			boolean exist = serverInfoService.appServer(userid, server);
-			if(exist) {
+			if (exist) {
 				reObject.put("error", "请勿重复申请");
-			}
-			else {
+			} else {
 				serverInfoService.save(server);
 				reObject.put("data", "申请成功");
 			}
@@ -90,7 +92,7 @@ public class PageController {
 		}
 		return reObject.toString();
 	}
-	
+
 	@PostMapping("/addActivity")
 	@ResponseBody
 	public String addActivity(HttpServletRequest request) {
@@ -104,16 +106,15 @@ public class PageController {
 			activity.setEndtime(MyUtil.StringToDate(request.getParameter("endtime")));
 			activity.setDocument(request.getParameter("document"));
 			activity.setScoreadd(Integer.parseInt(request.getParameter("scoreadd")));
-			//图片
-			
-			
+			// 图片
+
 			activityInfoService.save(activity);
 			reObject.put("data", "添加成功");
-			
+
 		} catch (Exception e) {
 			reObject.put("error", "添加活动失败");
 		}
 		return reObject.toString();
 	}
-	
+
 }

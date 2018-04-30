@@ -57,4 +57,14 @@ public interface ServerInfoService {
 	 * 带条件分页查询
 	 */
 	public Page<Server> findPageByClassify(final int active, final String classify, int page, int size);
+	
+	/**
+	 * 获取用户发起的进行中的服务
+	 */
+	public Iterable<Server> findUserRunningServer(String userid);
+	
+	/**
+	 * 获取某一个服务
+	 */
+	public Server getOne(String serverid);
 }

@@ -18,10 +18,10 @@
 			<div class="top-text">
 				<img src="/img/serv.png" class="l logo1"/>
 			  <ul class="top-title l">
-				<li class="l"><a href="../activity/page">首 页</a></li>
-				<li class="l"><a href="../activity/page">活 动</a></li>
-				<li class="l"><a href="../server/page">服 务</a></li>
-				<li class="l"><a href="../server/appService">申请服务</a></li>
+				<li class="l"><a href="../activity/byPageAndClassify0">首 页</a></li>
+				<li class="l"><a href="../activity/byPageAndClassify0">活 动</a></li>
+				<li class="l"><a href="../server/byPageAndClassify0">服 务</a></li>
+				<li class="l"><a href="../server/addService">申请服务</a></li>
 				<#if 0 == Session.user.permission>
 				<li class="l"><a href="../user/admin">管理员</a></li>
 				</#if>
@@ -59,10 +59,11 @@
 	<div class="userWrap-left">
 		<ul>
 			<li><button type="button" class="btnn" id="btn" onClick="javascript:load_usercenter();" >个人信息</button></li>
-			<li><button type="button" class="btnn" id="btn" onClick="javascript:load_useracp();" >修改密码</button></li>
+			<li><button type="button" class="btnn" id="btn" onClick="javascript:modifyPwd();" >修改密码</button></li>
 			<li><button type="button" class="btnn" id="btn" onClick="javascript:userServerList();" >参与的服务</button></li>
 			<li><button type="button" class="btnn" id="btn" onClick="javascript:userAppServerList();" >发起的服务</button></li>
 			<li><button type="button" class="btnn" id="btn" onClick="javascript:userActivityList();" >参与的活动</button></li>
+			<li><button type="button" class="btnn" id="btn" onClick="javascript:giveScore();" >结算积分</button></li>
 			<#if Session.user.permission == 1>
 			<li><button type="button" class="btnn" id="btn" onClick="javascript:appUserInfo();" >申请优待</button></li>
 			</#if>
@@ -97,6 +98,12 @@
    }
    function appUserInfo(){
  document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../user/user_pre" width="100%" height="100%"></object>';
+   }
+   function giveScore(){
+ document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../server/runningSerList?userid=${Session.user.userid}" width="100%" height="100%"></object>';
+   }
+   function modifyPwd(){
+ document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../user/modifyPwdPage" width="100%" height="100%"></object>';
    }
 </script>
 </body>

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -174,5 +175,38 @@ public class UserController {
 	@GetMapping("/user_pre")
 	public String user_pre() {
 		return "user_pre";
+	}
+	
+	//发放积分页面
+	@GetMapping("/giveScore")
+	public String giveScore() {
+		return "giveScore";
+	}
+	
+	//修改密码页面
+	@GetMapping("/modifyPwdPage")
+	public String modifyPwdPage() {
+		return "modifyPwd";
+	}
+	
+	//修改密码
+	@PostMapping("modifyPwd")
+	public String modifyPwd(HttpServletRequest request, HttpSession session, ModelMap modelMap) {
+		String oldPwd = request.getParameter("oldPwd");
+		String newPwd = request.getParameter("newPwd");
+		String rePwd = request.getParameter("rePwd");
+		User curUser = (User) session.getAttribute("user");
+		User user = userInfoService.getUser(curUser.getUserid());
+		if(!oldPwd.equals(curUser.getPassword())) {
+			modelMap.addAttribute("msg", "密码错误");
+		}else if(!newPwd.equals(rePwd)){
+			modelMap.addAttribute("msg", "两次输入密码不一致");
+		}else if(oldPwd.equals(curUser.getPassword()) && newPwd.equals(rePwd)) {
+			user.setPassword(newPwd);
+			userInfoService.save(user);
+			session.setAttribute("user", user);
+			modelMap.addAttribute("msg", "修改成功");
+		}
+		return "modifyPwd";
 	}
 }

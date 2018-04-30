@@ -27,4 +27,8 @@ public interface Serverdao extends JpaRepository<Server, Long>,JpaSpecificationE
 	
 	// 查找用户申请的服务
 	Iterable<Server> findByUserid(String userid);
+	
+	Iterable<Server> findByUseridAndActive(String userid, int active);
+	
+	Server findById(int id);
 }

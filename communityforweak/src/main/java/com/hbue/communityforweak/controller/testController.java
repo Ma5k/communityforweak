@@ -1,6 +1,5 @@
 package com.hbue.communityforweak.controller;
 
-import org.apache.el.parser.AstMapData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -60,11 +59,4 @@ public class testController {
 		return reObject.toString();
 	}
 	
-	@GetMapping("/t3")
-	@ResponseBody
-	public String t3() {
-		JSONObject reObject = new JSONObject();
-		reObject.put("data", actInfoser.findBypage(0, 4));
-		return reObject.toString();
-	}
 }
