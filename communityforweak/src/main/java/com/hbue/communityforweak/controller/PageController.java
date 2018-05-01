@@ -31,43 +31,45 @@ public class PageController {
 	private ActivityInfoService activityInfoService;
 
 	@GetMapping("/partakeActivity")
-	@ResponseBody
 	public String partakeActivity(@RequestParam String userid, @RequestParam String activityid,
-			@RequestParam String tel, ModelMap model) {
-		JSONObject reObject = new JSONObject();
+			@RequestParam String tel, ModelMap modelMap) {
 		try {
 			if (activityInfoService.alreadyPartakeAct(userid, Integer.parseInt(activityid))) {
-				reObject.put("error", "您已参加该活动请勿重复报名");
+				modelMap.addAttribute("msg", "您已参加该活动请勿重复报名");
 			} else {
 				userInfoService.partakeActive(userid, activityid, tel);
-				reObject.put("data", "参加成功");
+				modelMap.addAttribute("msg", "参加成功");
 			}
 		} catch (Exception e) {
-			reObject.put("error", "活动参加失败");
+			modelMap.addAttribute("msg", "活动参加失败");
 		}
-		return reObject.toString();
+		modelMap.addAttribute("pageResult", activityInfoService.findBypage(0, 0, 4));
+		modelMap.addAttribute("classify", "0");
+		return "activity";
 	}
 
 	@GetMapping("/partakeServer")
-	@ResponseBody
 	public String partakeServer(@RequestParam String userid, @RequestParam String serviceid, @RequestParam String tel,
-			ModelMap model) {
-		JSONObject reObject = new JSONObject();
+			ModelMap modelMap) {
 		try {
-			userInfoService.partakeServer(userid, serviceid, tel);
-			reObject.put("data", "参加成功");
+			if(serverInfoService.alreadyPartakeSer(userid, Integer.parseInt(serviceid))) {
+				modelMap.addAttribute("msg", "您已参与该服务请勿重复参加");
+			}else {
+				userInfoService.partakeServer(userid, serviceid, tel);
+				modelMap.addAttribute("msg", "参加成功");
+			}
 		} catch (Exception e) {
-			reObject.put("error", "参加服务失败");
+			modelMap.addAttribute("msg", "参加服务失败");
 		}
-		return reObject.toString();
+		modelMap.addAttribute("pageResult", serverInfoService.findBypage(0, 0, 4));
+		modelMap.addAttribute("classify", "0");
+		return "server";
 	}
 
 	@GetMapping("/appService")
-	@ResponseBody
 	public String appService(@RequestParam String userid, @RequestParam String servicename, @RequestParam String tel,
 			@RequestParam String ineed, @RequestParam String startime, @RequestParam String endtime,
-			@RequestParam String scoreadd, @RequestParam String classify) {
-		JSONObject reObject = new JSONObject();
+			@RequestParam String scoreadd, @RequestParam String classify, ModelMap modelMap) {
 		try {
 			Server server = new Server();
 			server.setActive(0);
@@ -82,21 +84,19 @@ public class PageController {
 
 			boolean exist = serverInfoService.appServer(userid, server);
 			if (exist) {
-				reObject.put("error", "请勿重复申请");
+				modelMap.addAttribute("msg", "请勿重复申请");
 			} else {
 				serverInfoService.save(server);
-				reObject.put("data", "申请成功");
+				modelMap.addAttribute("msg", "申请成功");
 			}
 		} catch (Exception e) {
-			reObject.put("error", "申请服务失败");
+			modelMap.addAttribute("msg", "申请服务失败");
 		}
-		return reObject.toString();
+		return "addService";
 	}
 
 	@PostMapping("/addActivity")
-	@ResponseBody
-	public String addActivity(HttpServletRequest request) {
-		JSONObject reObject = new JSONObject();
+	public String addActivity(ModelMap modelMap, HttpServletRequest request) {
 		try {
 			Activity activity = new Activity();
 			activity.setActive(0);
@@ -109,12 +109,12 @@ public class PageController {
 			// 图片
 
 			activityInfoService.save(activity);
-			reObject.put("data", "添加成功");
+			modelMap.addAttribute("msg", "添加成功");
 
 		} catch (Exception e) {
-			reObject.put("error", "添加活动失败");
+			modelMap.addAttribute("msg", "添加活动失败");
 		}
-		return reObject.toString();
+		return "addActivity";
 	}
 
 }

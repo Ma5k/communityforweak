@@ -18,9 +18,10 @@
             
             </table>
         </form>
-        <#if msg??>
-        	<h3>${msg}</h3>
-        </#if>
+        <!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
 
 </body>  
 </html>

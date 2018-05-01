@@ -14,6 +14,12 @@
 <body>
 
 <div class="user_acp">
+
+<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
+
 	<form class="acp" action="../manager/freescore" method="get">
 			<li><span>积分</span> <input name="score" placeholder="积分" type="number"/></li>
 		<input class="submit" type="submit" value="发放积分" />

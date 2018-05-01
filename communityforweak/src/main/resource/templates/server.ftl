@@ -34,6 +34,12 @@
 
 			</div>
 		</div>
+		
+		<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
+		
 		<!--当前位置部分-->
 		
 		<div class="position">

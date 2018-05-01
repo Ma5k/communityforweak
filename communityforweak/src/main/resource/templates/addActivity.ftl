@@ -13,6 +13,11 @@
 </head>
 <body>
 
+<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
+
 <div class="user_acp">
 	<form class="acp" action="/addActivity" method="post">
 		<ul>
@@ -32,15 +37,7 @@
 		<input class="submit" type="submit" value="添加" />
 	</form>
 </div>
-<!-- 底部 -->
-		<div class="footer">
-			<div class="footer-text">
-		湖北省武汉市亿维达信息科技 版权所有 鄂ICP备05000742号<br>
-		地址：武汉市湖北经济学院大学创业园 邮编：430205 电话：1010111<br>
-		Copyright&nbsp;&copy;&nbsp;2017-2027,CS.NET,All Rights Reserved<br>
 
-	</div>
-		</div>
 
 </body>
 </html>

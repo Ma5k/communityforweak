@@ -35,7 +35,7 @@ public class ActivityController {
 			reObject.put("data2", dataNodes2);
 		}
 		catch (Exception e) {
-			reObject.put("error", "获取活动列表失败");
+			reObject.put("msg", "获取活动列表失败");
 		}
 		return reObject.toString();
 	}
@@ -48,7 +48,7 @@ public class ActivityController {
 			Iterable<Activity> dataNodes = activityInfoService.findActiveList(classify);
 			reObject.put("data", dataNodes);
 		} catch (Exception e) {
-			reObject.put("error", "筛选活动列表失败");
+			reObject.put("msg", "筛选活动列表失败");
 		}
 		return reObject.toString();
 	}
@@ -60,7 +60,7 @@ public class ActivityController {
 			modelMap.addAttribute("data", dataNodes);
 		}
 		catch (Exception e) {
-			modelMap.addAttribute("error", "获取进行中的活动列表失败");
+			modelMap.addAttribute("msg", "获取进行中的活动列表失败");
 		}
 		return "getActivingList";
 	}
@@ -73,7 +73,7 @@ public class ActivityController {
 			modelMap.addAttribute("data", dataNodes);
 		}
 		catch (Exception e) {
-			modelMap.addAttribute("error", "获取参加活动列表失败");
+			modelMap.addAttribute("msg", "获取参加活动列表失败");
 		}
 		return "userActivityList";
 	}
@@ -85,10 +85,10 @@ public class ActivityController {
 		JSONObject reObject = new JSONObject();
 		try {
 			activityInfoService.comment(userid, activityid, comment);
-			reObject.put("data", "评论成功");
+			reObject.put("msg", "评论成功");
 		}
 		catch (Exception e) {
-			reObject.put("error", "获取参加活动列表失败");
+			reObject.put("msg", "获取参加活动列表失败");
 		}
 		return reObject.toString();
 	}
@@ -98,6 +98,7 @@ public class ActivityController {
 		return "addActivity";
 	}
 	
+	//√
 	@GetMapping(path="/byPageAndClassify0")
 	public String byPageAndClassify0(ModelMap modelMap,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,

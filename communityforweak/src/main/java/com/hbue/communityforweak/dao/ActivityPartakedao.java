@@ -16,4 +16,5 @@ public interface ActivityPartakedao extends JpaRepository<Activitypartake, Long>
 
 	Activitypartake findByUseridAndActivityid(String userid, int activityid);
 
+	
 }

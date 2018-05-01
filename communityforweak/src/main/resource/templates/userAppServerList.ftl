@@ -13,6 +13,12 @@
 </head>
 <body>
 <div class="user_service">
+
+<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
+
 <#list data as ser>
 	<div class="ract">
 		<div class="img" id="">

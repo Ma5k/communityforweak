@@ -53,6 +53,13 @@
 		</div>
 	</div>	
 </div>
+
+<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
+
+
 <div class="user_acp">
 	<form class="acp" action="/appService" method="get">
 	 	<input readonly="readonly" type="hidden" name="userid" value="${Session.user.userid}"/>

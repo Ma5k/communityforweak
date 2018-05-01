@@ -45,6 +45,13 @@
 				<li class="l api">活动</li>
 			</ul>
 		</div>
+		
+		<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
+		
+		
 		<!--服务分类--> 
 		<div class="serve">
 			<div class="serve-name l">

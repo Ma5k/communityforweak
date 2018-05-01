@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 
 import com.hbue.communityforweak.entry.Activity;
 import com.hbue.communityforweak.entry.Server;
+import com.hbue.communityforweak.entry.User;
 import com.hbue.communityforweak.entry.pvo.ServerUser;
 
 public interface ServerInfoService {
@@ -67,4 +68,15 @@ public interface ServerInfoService {
 	 * 获取某一个服务
 	 */
 	public Server getOne(String serverid);
+	
+	/**
+	 * 判断用户是否已报名该服务
+	 */
+	public Boolean alreadyPartakeSer(String userid, int serverid);
+	
+	
+	/**
+	 * 查询某服务下处于某转状态的所有用户
+	 */
+	public Iterable<User> getUserByServeridAndFlag(int serverid, int flag);
 }

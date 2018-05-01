@@ -56,4 +56,9 @@ public interface UserInfoService {
 	 * 	发放积分
 	 */
 	public void addScore(String sessionUserid, String serverid, String userid, String score);
+	
+	/*
+	 * 获取参与某活动的指定状态的用户
+	 */
+	public Iterable<User> getUserByActivityidAndFlag(int activityid, int flag);
 }

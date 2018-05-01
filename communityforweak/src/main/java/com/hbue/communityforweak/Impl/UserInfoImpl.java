@@ -76,7 +76,7 @@ public class UserInfoImpl implements UserInfoService {
 		partake.setUserid(userid);
 		partake.setActivityid(Integer.parseInt(id));
 		partake.setComment("");
-		partake.setFlag(1);
+		partake.setFlag(0);
 		partake.setTel(tel);
 		activityPartakedao.save(partake);
 	}
@@ -107,7 +107,15 @@ public class UserInfoImpl implements UserInfoService {
 		user.setScore(user.getScore() - Integer.parseInt(score));
 		userdao.save(user);
 		User user2 = userdao.findByUserid(userid);
-		user.setScore(user2.getScore() + Integer.parseInt(score));
+		user2.setScore(user2.getScore() + Integer.parseInt(score));
 		userdao.save(user2);
+		Serverpartake serverpartake = serverPartakedao.findByUseridAndServerid(userid, Integer.parseInt(serverid));
+		serverpartake.setFlag(1);
+		serverPartakedao.save(serverpartake);
+	}
+
+	@Override
+	public Iterable<User> getUserByActivityidAndFlag(int activityid, int flag) {
+		return userdao.getUserByActivityidAndFlag(activityid, flag);
 	}
 }

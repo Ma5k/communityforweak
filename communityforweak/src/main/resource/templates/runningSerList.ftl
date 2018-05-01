@@ -12,6 +12,11 @@
 </head>
 <!-- 主体部分 -->
 <body> 
+<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
+
 	<div class="mid">
 		<table border="1">
 			<tr>

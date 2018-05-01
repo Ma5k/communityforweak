@@ -27,6 +27,11 @@
         <a href="login">已有账号？去登陆</a>
     </div>
 </div> 
+
+<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
       
 </body>  
 </html>

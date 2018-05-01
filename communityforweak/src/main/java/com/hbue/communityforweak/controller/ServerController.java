@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
 import com.hbue.communityforweak.entry.Server;
+import com.hbue.communityforweak.entry.User;
 import com.hbue.communityforweak.entry.pvo.ServerUser;
 import com.hbue.communityforweak.service.ServerInfoService;
 import com.mysql.fabric.xmlrpc.base.Data;
@@ -32,7 +33,7 @@ public class ServerController {
 			reObject.put("data", dataNodes);
 		}
 		catch (Exception e) {
-			reObject.put("error", "获取服务列表失败");
+			reObject.put("msg", "获取服务列表失败");
 		}
 		return reObject.toString();
 	}
@@ -46,7 +47,7 @@ public class ServerController {
 			reObject.put("data", dataNodes);
 		}
 		catch (Exception e) {
-			reObject.put("error", "筛选服务列表失败");
+			reObject.put("msg", "筛选服务列表失败");
 		}
 		return reObject.toString();
 	}
@@ -60,7 +61,7 @@ public class ServerController {
 			reObject.put("data", dataNodes);
 		}
 		catch (Exception e) {
-			reObject.put("error", "获取申请中的服务列表失败");
+			reObject.put("msg", "获取申请中的服务列表失败");
 		}
 		return reObject.toString();
 	}
@@ -72,7 +73,7 @@ public class ServerController {
 			modelMap.addAttribute("data", dataNodes);
 		}
 		catch (Exception e) {
-			modelMap.addAttribute("error", "获取用户参加服务列表失败");
+			modelMap.addAttribute("msg", "获取用户参加服务列表失败");
 		}
 		return "userServerList";
 	}
@@ -84,7 +85,7 @@ public class ServerController {
 			modelMap.addAttribute("data", dataNodes);
 		}
 		catch (Exception e) {
-			modelMap.addAttribute("error", "获取用户发起服务列表失败");
+			modelMap.addAttribute("msg", "获取用户发起服务列表失败");
 		}
 		return "userAppServerList";
 	}
@@ -97,7 +98,7 @@ public class ServerController {
 			modelMap.addAttribute("data", data);
 		}
 		catch (Exception e) {
-			modelMap.addAttribute("error", "获取进行中的用户服务失败");
+			modelMap.addAttribute("msg", "获取进行中的用户服务失败");
 		}
 		return "runningSerList";
 	}
@@ -105,13 +106,13 @@ public class ServerController {
 	@GetMapping("/getServerUserList")
 	public String getServerUserList(ModelMap modelMap, @RequestParam String serverid) {
 		try {
-			List<ServerUser> dataNodes = serverInfoService.getServerUserList(serverid);
+			Iterable<User> dataNodes = serverInfoService.getUserByServeridAndFlag(Integer.parseInt(serverid), 0);
 			Server server = serverInfoService.getOne(serverid);
 			modelMap.addAttribute("server", server);
 			modelMap.addAttribute("data", dataNodes);
 		}
 		catch (Exception e) {
-			modelMap.addAttribute("error", "获取参与用户失败");
+			modelMap.addAttribute("msg", "获取参与用户失败");
 		}
 		return "giveScore";
 	}

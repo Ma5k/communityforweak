@@ -22,8 +22,11 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.hbue.communityforweak.dao.ServerPartakedao;
 import com.hbue.communityforweak.dao.Serverdao;
+import com.hbue.communityforweak.dao.Userdao;
 import com.hbue.communityforweak.entry.Activity;
 import com.hbue.communityforweak.entry.Server;
+import com.hbue.communityforweak.entry.Serverpartake;
+import com.hbue.communityforweak.entry.User;
 import com.hbue.communityforweak.entry.pvo.ServerUser;
 import com.hbue.communityforweak.service.ServerInfoService;
 
@@ -35,6 +38,9 @@ public class ServerInfoImpl implements ServerInfoService{
 	
 	@Autowired
 	private ServerPartakedao serverPartakedao;
+	
+	@Autowired
+	private Userdao userdao;
 	
 	public void save(Server server) {
 		serverdao.save(server);
@@ -133,11 +139,26 @@ public class ServerInfoImpl implements ServerInfoService{
 
 		@Override
 		public Iterable<Server> findUserRunningServer(String userid) {
-			return serverdao.findByUseridAndActive(userid, 0);
+			return serverdao.findByUseridAndActive(userid, 1);
 		}
 
 		@Override
 		public Server getOne(String serverid) {
 			return serverdao.findById(Integer.parseInt(serverid));
+		}
+
+		@Override
+		public Boolean alreadyPartakeSer(String userid, int serverid) {
+			Serverpartake serverpartake = serverPartakedao.findByUseridAndServerid(userid,  serverid);
+			if(serverpartake != null) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+
+		@Override
+		public Iterable<User> getUserByServeridAndFlag(int serverid, int flag) {
+			return userdao.getUserByServeridAndFlag(serverid, flag);
 		}
 }

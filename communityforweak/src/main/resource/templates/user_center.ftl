@@ -13,6 +13,11 @@
 <!-- 主体部分 -->
 <body> 
 <div class="mid">
+
+<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
 	<div id="login" class="mid">  
         <form method="get" action="/user/updateUserInfo">  
             <input readonly="readonly" class="input" type="text" required="required" placeholder="请输入账号" name="userid" value="${Session.user.userid}"/>  

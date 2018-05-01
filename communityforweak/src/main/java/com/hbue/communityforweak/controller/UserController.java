@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hbue.communityforweak.entry.Server;
 import com.hbue.communityforweak.entry.User;
+import com.hbue.communityforweak.service.ServerInfoService;
 import com.hbue.communityforweak.service.UserInfoService;
 
 @Controller
@@ -24,10 +26,11 @@ public class UserController {
 	
 	@Autowired
 	private UserInfoService userInfoService;
+	
+	@Autowired ServerInfoService serverInfoService;
 
 	@GetMapping(path = "/login")
 	public String login(Map<String, Object> map) {
-		map.put("msg", "用户名为数字");
 		return "login";
 	}
 
@@ -51,7 +54,6 @@ public class UserController {
 
 	@GetMapping("/regist")
 	public String register(Map<String, Object> map) {
-		map.put("msg", "");
 		return "regist";
 	}
 
@@ -89,65 +91,61 @@ public class UserController {
 	}
 
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		JSONObject reObject = new JSONObject();
+	public String logout(ModelMap modelMap, HttpSession session) {
 		try {
 			session.removeAttribute("user");
-			reObject.put("data", "注销成功");
+			modelMap.addAttribute("msg", "注销成功");
 		}
 		catch (Exception e) {
-			reObject.put("error", "注销失败！请检查网络");
+			modelMap.addAttribute("msg", "注销失败！请检查网络");
 		}
 		return "login";
 	}
 	
 	@GetMapping("/updateUserInfo")
-	@ResponseBody
-	public String updateUserInfo(@RequestParam String userid,@RequestParam String username,@RequestParam String address,@RequestParam String tel, HttpSession session) {
-		JSONObject reObject = new JSONObject();
+	public String updateUserInfo(ModelMap modelMap, @RequestParam String userid,@RequestParam String username,@RequestParam String address,@RequestParam String tel, HttpSession session) {
 		try {
 			userInfoService.update(userid, username, address, tel);
 			User user = userInfoService.getUser(userid);
 			session.setAttribute("user", user);
-			reObject.put("data", null);
+			modelMap.addAttribute("msg", "修改成功");
 		}
 		catch (Exception e) {
-			reObject.put("error", "修改信息失败");
+			modelMap.addAttribute("msg", "修改信息失败");
 		}
-		return reObject.toString();
+		return "user_center";
 	}
 	
 	@GetMapping("/appUserInfo")
-	@ResponseBody
-	public String appUserInfo(@RequestParam String userid, @RequestParam String idcard) {
-		JSONObject reObject = new JSONObject();
+	public String appUserInfo(ModelMap modelMap, @RequestParam String userid, @RequestParam String idcard) {
 		try {
 			userInfoService.appPermission(userid, idcard);
-			reObject.put("data", null);
+			modelMap.addAttribute("msg", "申请成功");
 		}
 		catch (Exception e) {
-			reObject.put("error", "优待申请失败");
+			modelMap.addAttribute("msg", "优待申请失败");
 		}
-		return reObject.toString();
+		return "user_pre";
 	}
 	
 	@GetMapping("/addScore")
-	@ResponseBody
-	public String addScore(@RequestParam String sessionUserid, @RequestParam String serverid, @RequestParam String userid, @RequestParam String score) {
-		JSONObject reObject = new JSONObject();
+	public String addScore(ModelMap modelMap, @RequestParam String sessionUserid, @RequestParam String serverid, @RequestParam String userid, @RequestParam String score) {
 		try {
 			userInfoService.addScore(sessionUserid, serverid, userid, score);
-			reObject.put("data", "发放成功");
+			modelMap.addAttribute("msg", "发放成功");
 		}
 		catch (Exception e) {
-			reObject.put("error", "积分发放失败");
+			modelMap.addAttribute("msg", "积分发放失败");
 		}
-		return reObject.toString();
+		Iterable<User> dataNodes = serverInfoService.getUserByServeridAndFlag(Integer.parseInt(serverid), 0);
+		Server server = serverInfoService.getOne(serverid);
+		modelMap.addAttribute("server", server);
+		modelMap.addAttribute("data", dataNodes);
+		return "giveScore";
 	}
 	
 	@GetMapping("/personInfo")
 	public String personInfo(Map<String, Object> map) {
-		map.put("msg", "");
 		return "personInfo";
 	}
 	
@@ -160,14 +158,12 @@ public class UserController {
 	//用户信息
 	@GetMapping("/user_center")
 	public String user_center(Map<String, Object> map) {
-		map.put("msg", "");
 		return "user_center";
 	}
 	
 	
 	@GetMapping("/user_service")
 	public String user_service(Map<String, Object> map) {
-		map.put("msg", "");
 		return "user_service";
 	}
 	

@@ -25,6 +25,12 @@
     </div>
 </div> 
 
+
+<!--提示消息-->
+		<#if msg??>
+			<h1>${msg}</h1>
+		</#if>
+
 <script type="text/javascript">
 error : function(error){
 }

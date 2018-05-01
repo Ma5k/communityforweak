@@ -14,5 +14,7 @@ public interface ServerPartakedao extends JpaRepository<Serverpartake, Long>{
 			+ "where server_partake.serverid = ?1",nativeQuery=true)
 	List<Object[]> getAllUser(String serverid);
 	
+	Serverpartake findByUseridAndServerid(String userid, int serverid);
+	
 }
 
