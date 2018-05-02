@@ -216,16 +216,22 @@ body{
 	padding-left: 50px;
 }
 .btn-v{
-	width: 70px;
+	width: 90px;
 	height: 30px;
-	margin-left: 220px;
+	margin-left: 200px;
 	margin-bottom: 10px;
+	padding-left:0px;
+	padding-right: 20px;
 	border:0;
 	border-radius: 3px;
 	background-color: #8aafff;
 	text-align: center;
 	font-family: "微软雅黑";
 	font-size: 18px;
+}
+
+.mask{
+	padding-left:0px!important;
 }
 
 /*分页*/

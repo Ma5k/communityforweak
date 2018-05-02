@@ -3,9 +3,13 @@
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
+		<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+		<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+		<script src="/bootstrap/js/bootstrap.min.js"></script>
+		
+		
 		<link rel="stylesheet" href="/css/index.css">
 		<link rel="stylesheet" href="/css/common.css">
-		<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 	</head>
 	<body>
 		<!--顶部部分-->
@@ -37,7 +41,10 @@
 		
 		<!--提示消息-->
 		<#if msg??>
-			<h1>${msg}</h1>
+		<div class="alert alert-warning alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>${msg}</strong>
+    </div>
 		</#if>
 		
 		<!--当前位置部分-->
@@ -77,15 +84,15 @@
 		
 		<div class="act">
 			<#list pageResult.content as ser>
-				<div class="ract">
+				<div class="lact">
 					<div class="img" id="">
-						<img id="act2_img" src="/img/a.png">
+						<img id="act2_img" src="/img/server/${ser.classify}.jpg">
 					</div>
 					<div class="disc" id="">
 						<a id="act2_actname" href="">${ser.servname}</a>
 						<div class="disca">
 							<a id="act2_actdoc" href="">${ser.ineed}</a>
-							<button type="button" class="btn-v" id="act2_actid" actid=""><a href="../partakeServer?userid=${Session.user.userid}&serviceid=${ser.id}&tel=${Session.user.tel}">报名</a></button>
+							<button type="button" class="btn-v" id="act2_actid" actid=""><a class="mask" href="../partakeServer?userid=${Session.user.userid}&serviceid=${ser.id}&tel=${Session.user.tel}">报名</a></button>
 						</div>
 
 					</div>
