@@ -5,12 +5,13 @@
 	<meta charset="utf-8" />
 		<title></title>
 		<link rel="stylesheet" href="/css/user_acp.css">
-		<link rel="stylesheet" href="/css/common.css">
-		<link rel="stylesheet" type="text/css" href="/js/pagination/mricode.pagination.css"/><script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
 		<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 		<script src="/bootstrap/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/js/history.js"></script>
-		<script type="text/javascript" src="/js/pagination/mricode.pagination.js"></script>
+		
+		
+		<link rel="stylesheet" href="/css/index.css">
+		<link rel="stylesheet" href="/css/common.css">
 </head>
 <body>
 <!--顶部部分-->
@@ -45,8 +46,7 @@
 		<div class="person">
 			<button type="button" class="tx">
    				<img src="/img/a.png" class="logo2"></button>
-			<span id="">昨日少年</span>
-			<button type="button" class="btn-xiu" id="btn" onClick="javascript:load_useracp();" >修改信息</button>
+			<span id="">${Session.user.userid}</span>
 		</div>
 		<div class="time">
 			<div class="time-title">个人积分</div>

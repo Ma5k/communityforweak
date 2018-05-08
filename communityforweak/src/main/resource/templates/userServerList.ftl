@@ -27,13 +27,13 @@
 <#list data as ser>
 	<div class="ract">
 		<div class="img" id="">
-			<img src="/img/a.png">
+			<img src="/img/server/${ser.classify}.jpg">
 		</div>
 		<div class="disc" id="">
 			<a href="">${ser.servname}</a>
 			<div class="disca">
 			<a href="">${ser.ineed}</a>
-			<a href="">参与时间：2017年9月12日</a>
+			<a href="">服务积分${ser.scoreadd}</a>
 			</div>
 		</div>
 	</div>

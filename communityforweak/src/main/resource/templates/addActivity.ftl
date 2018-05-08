@@ -28,7 +28,6 @@
 		<ul>
 			<li><span>活动名称</span> <input name="activityname" placeholder="活动名称" type="text"/></li>
 		<li><span>活动简介</span> <textarea name="document" class="xuqiu"></textarea>
-		<li><span>活动图片</span> <input type="file" name="image" placeholder="活动图片" type="text"/></li>
 		<li><span>起止时间</span> <input name="startime" type="date"> 至 <input name="endtime" type="date"></li>
 		</ul>
 		<li><span>服务分类</span> <select name="classify">
@@ -38,7 +37,7 @@
 		  <option value="4">郊游踏青</option>
 		  <option value="5">其他</option>
 		</select></li>
-		<li><span>积  分 </span><input name="scoreadd" type="number" min="0" value="0"></li>
+		<li><span>积  分 </span><input name="scoreadd" type="number"  value="0"></li>
 		<input class="submit" type="submit" value="添加" />
 	</form>
 </div>

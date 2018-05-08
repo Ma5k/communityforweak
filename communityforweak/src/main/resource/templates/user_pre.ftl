@@ -13,7 +13,7 @@
 	<script type="text/javascript" src="/js/pagination/mricode.pagination.js"></script>
 </head>
 <!-- 主体部分 -->
-<body> 
+<body>
 <div class="mid">
 
 <!--提示消息-->

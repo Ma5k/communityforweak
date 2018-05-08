@@ -26,13 +26,13 @@
 <#list data as act>
 	<div class="ract">
 		<div class="img" id="">
-			<img src="/img/a.png">
+			<img src="/img/activity/${act.classify}.jpg">
 		</div>
 		<div class="disc" id="">
 			<a href="">${act.activityname}</a>
 			<div class="disca">
 			<a href="">${act.document}</a>
-			<a href="">参与时间：2017年9月12日</a>
+			<a href="">活动积分${act.scoreadd}</a>
 			</div>
 		</div>
 	</div>

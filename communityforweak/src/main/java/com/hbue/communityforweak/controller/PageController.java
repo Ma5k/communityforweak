@@ -82,14 +82,15 @@ public class PageController {
 			server.setTel(tel);
 			server.setUserid(userid);
 
-			boolean exist = serverInfoService.appServer(userid, server);
-			if (exist) {
-				modelMap.addAttribute("msg", "请勿重复申请");
-			} else {
+			//boolean exist = serverInfoService.appServer(userid, server);
+//			if (exist) {
+//				modelMap.addAttribute("msg", "请勿重复申请");
+//			} else {
 				serverInfoService.save(server);
 				modelMap.addAttribute("msg", "申请成功");
-			}
+			//}
 		} catch (Exception e) {
+			System.out.println(e);
 			modelMap.addAttribute("msg", "申请服务失败");
 		}
 		return "addService";
