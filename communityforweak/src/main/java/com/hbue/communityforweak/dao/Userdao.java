@@ -11,6 +11,7 @@ import com.hbue.communityforweak.entry.User;
 
 public interface Userdao extends JpaRepository<User, Long> {
 
+	//根据用户id
 	User findByUserid(String userid);
 
 	Iterable<User> findByPermission(int permission);

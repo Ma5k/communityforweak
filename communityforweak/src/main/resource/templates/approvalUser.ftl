@@ -1,47 +1,56 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8" />
-	<title></title>
-	<link rel="stylesheet" href="/css/regist.css">
-	<link rel="stylesheet" href="/css/common.css">
-	<link rel="stylesheet" href="/css/table.css">
-	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-		<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-		<script src="/bootstrap/js/bootstrap.min.js"></script>
-</head>
-<!-- 主体部分 -->
-<body> 
+<!DOCTYPE html>
+<html>
 
-<!--提示消息-->
+	<head>
+		<meta charset="utf-8">
+		<title>审批用户</title>
+		<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+		<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+		<script src="/bootstrap/js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+	
+	<!--提示消息-->
 		<#if msg??>
 		<div class="alert alert-warning alert-dismissible fade in" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
       <strong>${msg}</strong>
     </div>
 		</#if>
+		<!--提示消息-->
+	
+		<h3>已申请用户列表</h3>
+		<div style="width: 700px;">
+			<table class="table table-hover">
+				<tr class="text-center">
+					<th style="width: 200px;">账号</th>
+					<th style="width: 150px;">用户名</th>
+					<th style="width: 300px;">地址</th>
+					<th style="width: 100px;">身份证号</th>
+					<th style="width: 100px;">联系方式</th>
+					<th style="width: 300px;">操作</th>
+				</tr>
+				<#list data as user>
+				<tr>
+					<td>${user.userid}</td>
+					<td>${user.username}</td>
+					<td>${user.address}</td>
+					<td><#if user.idcard??>${user.idcard}<#else>该用户暂未填写身份证号</#if></td>
+					<td>${user.tel}</td>
+					<td>
+						<a href="../manager/AppUser?userid=${user.userid}&select=yes" class="btn btn-info" role="button">是</a>
+						<a href="../manager/AppUser?userid=${user.userid}&select=no" class="btn btn-info" role="button">否</a>
+					</td>
+				</tr>
+				<#else>
+				<tr>
+					<td colspan="6">暂时无人申请</td>
+				</tr>
+				</#list>
+			</table>
+		</div>
 
-	<div class="mid">
-		<table border="1">
-			<tr>
-				<th>账号</th>
-				<th>用户名</th>
-				<th>地址</th>
-				<th>身份证号</th>
-				<th>联系方式</th>
-				<th>审批</th>
-			</tr>
-			<#list data as user>
-			<tr>
-				<td>${user.userid}</td>
-				<td>${user.username}</td>
-				<td>${user.address}</td>
-				<td><#if user.idcard??>${user.idcard}<#else>该用户暂未填写身份证号</#if></td>
-				<td>${user.tel}</td>
-				<td><a href="../manager/AppUser?userid=${user.userid}&select=yes">是</a><a href="../manager/AppUser?userid=${user.userid}&select=no">否</a></td>
-			</tr>
-			</#list>
-		</div> 
+	</body>
 
-	</body>  
-	</html>
+</html>

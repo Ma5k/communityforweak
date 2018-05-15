@@ -45,7 +45,7 @@ public class UserController {
 			map.put("msg", "登录成功!");
 			session.setAttribute("user", user);
 			map.put("all",userInfoService.getTypeUser(1+""));
-			return "redirect:/activity/byPageAndClassify0";
+			return "index";
 		} else {
 			map.put("msg", "密码错误!");
 			return "login";

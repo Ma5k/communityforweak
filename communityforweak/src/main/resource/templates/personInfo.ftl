@@ -1,110 +1,95 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>个人主页</title>
-	<meta charset="utf-8" />
-		<title></title>
-		<link rel="stylesheet" href="/css/inter.css">
-		<link rel="stylesheet" href="/css/common.css">
-		<link rel="stylesheet" type="text/css" href="/js/pagination/mricode.pagination.css"/>
-		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
-		<script type="text/javascript" src="js/history.js"></script>
-		<script type="text/javascript" src="js/pagination/mricode.pagination.js"></script>
-</head>
-<body>
-<!--顶部部分-->
-		<div class="top">
-			<div class="top-text">
-				<img src="/img/serv.png" class="l logo1"/>
-			  <ul class="top-title l">
-				<li class="l"><a href="../activity/byPageAndClassify0">首 页</a></li>
-				<li class="l"><a href="../activity/byPageAndClassify0">活 动</a></li>
-				<li class="l"><a href="../server/byPageAndClassify0">服 务</a></li>
-				<li class="l"><a href="../server/addService">申请服务</a></li>
-				<#if 0 == Session.user.permission>
-				<li class="l"><a href="../user/admin">管理员</a></li>
-				</#if>
-			  </ul> 
-			  
-			  <div class="head-portrai r">
-			  <button type="button" class="btn">
-   				<img src="/img/icon-person.png" class="logo2"></button>
-			  	<div class="people-name">
-			  		<a id="login" href="../user/personInfo">欢迎您！${Session.user.username}</a>
-			  		 <a href="/user/logout">注销</a>
-			  	</div>
 
-			  </div>
+	<head>
+		<meta charset="utf-8">
+		<title>个人中心</title>
+		<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+		<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+		<script src="/bootstrap/js/bootstrap.min.js"></script>
+	</head>
 
+	<body>
+		<!--导航栏-->
+		<nav class="navbar navbar-default navbar-static-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="../index"><h4>社区服务中心</h4></a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="../activity/byPageAndClassify0"><h5>活动</h5></a>
+						</li>
+						<li>
+							<a href="../server/byPageAndClassify0"><h5>服务</h5></a>
+						</li>
+						<li>
+							<a href="../server/addService"><h5>申请服务</h5></a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a href="../user/personInfo"><h5>个人中心</h5></a>
+						</li>
+						<#if 0 == Session.user.permission>
+						<li>
+							<a href="../user/admin"><h5>管理员</h5></a>
+						</li>
+						</#if>
+						<li>
+							<a href="../user/logout"><h5>注销</h5></a>
+						</li>
+					</ul>
+				</div>
+				<!--/.nav-collapse -->
 			</div>
-		</div>
-<!-- 中间部分 -->
-<div class="mid">
-	<div class="midall">
-		<div class="person">
-			<button type="button" class="tx">
-   				<img src="/img/a.png" class="logo2"></button>
-			<span id="">${Session.user.id}</span>
-		</div>
-		<div class="time">
-			<div class="time-title">个人积分</div>
-			<div class="time-num" id="">${Session.user.score}</div>
-		</div>
-	</div>	
-</div>
+			<!--/.container-fluid -->
+		</nav>
+		<!--导航栏-->
 
-<!-- 主体部分 -->
-<div class="userWrap">
-	<div class="userWrap-left">
-		<ul>
-			<li><button type="button" class="btnn" id="btn" onClick="javascript:load_usercenter();" >个人信息</button></li>
-			<li><button type="button" class="btnn" id="btn" onClick="javascript:modifyPwd();" >修改密码</button></li>
-			<li><button type="button" class="btnn" id="btn" onClick="javascript:userServerList();" >参与的服务</button></li>
-			<li><button type="button" class="btnn" id="btn" onClick="javascript:userAppServerList();" >发起的服务</button></li>
-			<li><button type="button" class="btnn" id="btn" onClick="javascript:userActivityList();" >参与的活动</button></li>
-			<li><button type="button" class="btnn" id="btn" onClick="javascript:giveScore();" >结算积分</button></li>
-			<#if Session.user.permission == 1>
-			<li><button type="button" class="btnn" id="btn" onClick="javascript:appUserInfo();" >申请优待</button></li>
-			</#if>
-		</ul>
-		
-	</div>
-	<div class="userWrap-right" id="viewDiv">
-		
-	</div>
-</div>
-<!-- 底部 -->
-		<div class="footer">
-			<div class="footer-text">
-		湖北省武汉市亿维达信息科技 版权所有 鄂ICP备05000742号<br>
-		地址：武汉市湖北经济学院大学创业园 邮编：430205 电话：1010111<br>
-		Copyright&nbsp;&copy;&nbsp;2017-2027,CS.NET,All Rights Reserved<br>
-
-	</div>
+		<!--左侧导航-->
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<div style="width: 200px;" class="btn-group-vertical" role="group" aria-label="Vertical button group">
+					<h3 class="text-center">积分：${Session.user.score}</h3>
+					<button type="button" class="btn btn-info" onclick="javascript:load_usercenter()"><h4>个人信息</h4></button>
+					<button type="button" class="btn btn-info" onclick="javascript:modifyPwd()"><h4>修改密码</h4></button>
+					<button type="button" class="btn btn-info" onclick="javascript:userActivityList()"><h4>参与的活动</h4></button>
+					<button type="button" class="btn btn-info" onclick="javascript:userServerList()"><h4>参与的服务</h4></button>
+					<button type="button" class="btn btn-info" onclick="javascript:userAppServerList()"><h4>发起的服务</h4></button>
+					<button type="button" class="btn btn-info" onclick="javascript:giveScore()"><h4>结算积分</h4></button>
+					<#if Session.user.permission == 1>
+					<button type="button" class="btn btn-info" onclick="javascript:appUserInfo();"><h4>申请优待</h4></button>
+					</#if>
+				</div>
+			</div>
+			<div class="col-md-7" style="height: 600px" id="viewDiv"></div>
 		</div>
-<script type="text/javascript">
-	function load_usercenter() {
- document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../user/user_center" width="100%" height="100%"></object>';
-   }
-   function userAppServerList() {
- document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../server/userAppServerList?userid=${Session.user.userid}" width="100%" height="100%"></object>';
-   }
-   function userServerList() {
- document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../server/userServerList?userid=${Session.user.userid}" width="100%" height="100%"></object>';
-   }
-   function userActivityList() {
- document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../activity/userActivityList?userid=${Session.user.userid}" width="100%" height="100%"></object>';
-   }
-   function appUserInfo(){
- document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../user/user_pre" width="100%" height="100%"></object>';
-   }
-   function giveScore(){
- document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../server/runningSerList?userid=${Session.user.userid}" width="100%" height="100%"></object>';
-   }
-   function modifyPwd(){
- document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../user/modifyPwdPage" width="100%" height="100%"></object>';
-   }
-</script>
-</body>
+	</body>
+	<script type="text/javascript">
+		function load_usercenter() {
+		 document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../user/user_center" width="100%" height="100%"></object>';
+	   }
+	   function userAppServerList() {
+		 document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../server/userAppServerList?userid=${Session.user.userid}" width="100%" height="100%"></object>';
+	   }
+	   function userServerList() {
+		 document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../server/userServerList?userid=${Session.user.userid}" width="100%" height="100%"></object>';
+	   }
+	   function userActivityList() {
+		 document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../activity/userActivityList?userid=${Session.user.userid}" width="100%" height="100%"></object>';
+	   }
+	   function appUserInfo(){
+		 document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../user/user_pre" width="100%" height="100%"></object>';
+	   }
+	   function giveScore(){
+		 document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../server/runningSerList?userid=${Session.user.userid}" width="100%" height="100%"></object>';
+	   }
+	   function modifyPwd(){
+		 document.getElementById("viewDiv").innerHTML = '<object type="text/html" data="../user/modifyPwdPage" width="100%" height="100%"></object>';
+	   }
+	</script>
+
 </html>

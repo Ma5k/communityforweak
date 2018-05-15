@@ -18,6 +18,8 @@ import com.hbue.communityforweak.service.ActivityInfoService;
 import com.hbue.communityforweak.service.ServerInfoService;
 import com.hbue.communityforweak.service.UserInfoService;
 
+import groovy.lang.MetaClassImpl.Index;
+
 @Controller
 public class PageController {
 
@@ -29,6 +31,11 @@ public class PageController {
 
 	@Autowired
 	private ActivityInfoService activityInfoService;
+	
+	@GetMapping("/index")
+	public String toIndex() {
+		return "index";
+	}
 
 	@GetMapping("/partakeActivity")
 	public String partakeActivity(@RequestParam String userid, @RequestParam String activityid,

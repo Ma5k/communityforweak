@@ -1,39 +1,45 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="utf-8" />
-	<title></title>
-	<link rel="stylesheet" href="/css/regist.css">
-	<link rel="stylesheet" href="/css/common.css">
-	<link rel="stylesheet" type="text/css" href="/js/pagination/mricode.pagination.css"/>
-	<script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
-		<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-		<script src="/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/mustache.js"></script>
-	<script type="text/javascript" src="/js/pagination/mricode.pagination.js"></script>
-</head>
-<!-- 主体部分 -->
-<body> 
-<div class="mid">
+<!DOCTYPE html>
+<html>
 
-<!--提示消息-->
-		<!--提示消息-->
+	<head>
+		<meta charset="utf-8">
+		<title>个人信息</title>
+		<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+		<script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script>
+		<script src="/bootstrap/js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+	<!--提示消息-->
 		<#if msg??>
 		<div class="alert alert-warning alert-dismissible fade in" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
       <strong>${msg}</strong>
     </div>
 		</#if>
-	<div id="login" class="mid">  
-        <form method="get" action="/user/updateUserInfo">  
-            <input readonly="readonly" class="input" type="text" required="required" placeholder="请输入账号" name="userid" value="${Session.user.userid}"/>  
-            <input class="input" type="text" required="required" placeholder="请输入姓名" name="username" value="${Session.user.username}"/> 
-            <input class="input" type="text" required="required" placeholder="请输入家庭地址" name="address" value="${Session.user.address}"/>
-            <input class="input" type="text" required="required" placeholder="请输入联系方式" name="tel" value="${Session.user.tel}"/>
-            <button class="btn" type="submit">修改</button>  
-        </form>
-    </div>
-</div> 
-      
-</body>  
+		<!--提示消息-->
+		<div class="col-md-4" style="width: 400px!important; margin: auto!important;">
+			<form method="get" action="/user/updateUserInfo">
+				<h2 class="form-signin-heading">个人信息</h2>
+				<div class="form-group">
+					<label for="userid">账号</label>
+					<input readonly="readonly" type="text" class="form-control" name="userid" placeholder="账号" value="${Session.user.userid}">
+				</div>
+				<div class="form-group">
+					<label for="username">用户名</label>
+					<input type="text" class="form-control" name="username" placeholder="用户名" value="${Session.user.username}">
+				</div>
+				<div class="form-group">
+					<label for="address">地址</label>
+					<input type="text" class="form-control" name="address" placeholder="地址" value="${Session.user.address}">
+				</div>
+				<div class="form-group">
+					<label for="tel">联系方式</label>
+					<input type="text" class="form-control" name="tel" placeholder="联系方式" value="${Session.user.tel}">
+				</div>
+				<button type="submit" class="btn btn-info">修改</button>
+			</form>
+		</div>
+	</body>
+
 </html>
